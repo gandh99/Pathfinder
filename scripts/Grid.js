@@ -28,6 +28,7 @@ export default class Grid {
                 // Create CellModel and CellView
                 let cellView = new CellView(tableCell);
                 let cellModel = new CellModel(i, j, cellView);
+                this.grid[i][j] = cellModel;
                 tableCell.addEventListener("click", function(event) {
                     selectCell(cellModel);
                 });
