@@ -1,16 +1,20 @@
+import CellState from "./CellState.js";
+
 // Class names
 const ACTIVE_BUTTON_CLASS_NAME = "active-button";
-const SOURCE_CELL_CLASS_NAME = "source-cell";
-const DESTINATION_CELL_CLASS_NAME = "destination-cell";
 
 // Initialise the utility buttons
 let sourceButton = document.getElementById("source-button");
 let destinationButton = document.getElementById("destination-button");
 let cellStateButtons = [sourceButton, destinationButton];
+let buttonToCellStateMap = new Map([
+    [sourceButton.id, CellState.SOURCE],
+    [destinationButton.id, CellState.DESTINATION]
+]);
 
-addCellStateButtonFunctionality();
+initCellStateButtons();
 
-function addCellStateButtonFunctionality() {
+function initCellStateButtons() {
     cellStateButtons.forEach(button => {
         button.addEventListener("click", activateCellStateButton);
     });
@@ -22,14 +26,15 @@ function activateCellStateButton() {
         button.classList.remove(ACTIVE_BUTTON_CLASS_NAME);
     });
 
-    // Activate the selected cell state button
+    // Activate the selected cell state button by giving adding a class name to it
     this.classList.add(ACTIVE_BUTTON_CLASS_NAME);
 }
 
 export function getClassOfActiveButton() {
-    if (sourceButton.classList.contains(ACTIVE_BUTTON_CLASS_NAME)) {
-        return SOURCE_CELL_CLASS_NAME;
-    } else if (destinationButton.classList.contains(ACTIVE_BUTTON_CLASS_NAME)) {
-        return DESTINATION_CELL_CLASS_NAME;
+    for (let i = 0; i < cellStateButtons.length; i++) {
+        let button = cellStateButtons[i];
+        if (button.classList.contains(ACTIVE_BUTTON_CLASS_NAME)) {
+            return buttonToCellStateMap.get(button.id);
+        }
     }
 }
