@@ -1,4 +1,4 @@
-import CellState from "./CellState.js";
+import CellState from "./cellstate.js";
 
 // Class names
 const ACTIVE_BUTTON_CLASS_NAME = "active-button";
@@ -37,4 +37,8 @@ export function getClassOfActiveButton() {
             return buttonToCellStateMap.get(button.id);
         }
     }
+}
+
+export function getCellStateFromValue(value) {
+    return Object.keys(CellState).find(key => CellState[key] === value);
 }

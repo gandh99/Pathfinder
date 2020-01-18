@@ -1,11 +1,12 @@
-import Cell from "./Cell.js";
-import {getClassOfActiveButton} from "./utilityBar.js";
+import CellModel from "./cellmodel.js";
+import CellView from "./cellview.js";
+import {selectCell} from "./controllers.js";
 
 export default class Grid {
     constructor(numberOfRows, numberOfCols) {
-        this.grid;
         this.numberOfRows = numberOfRows;
         this.numberOfCols = numberOfCols;
+        this.grid = new Array(this.numberOfRows);
         this.initGrid();
     }
 
@@ -14,7 +15,6 @@ export default class Grid {
         let gridContainer = document.getElementById("grid-container");
         let tableRoot = document.createElement("table");
         tableRoot.id = "grid-table";
-        this.grid = new Array(this.numberOfRows);
 
         for (let i = 0; i < this.numberOfRows; i++) {
             let tableRow = document.createElement("tr");
@@ -25,19 +25,17 @@ export default class Grid {
                 let tableCell = document.createElement("td");
                 tableRow.appendChild(tableCell);
 
-                // Assign functionality to table cell
-                this.grid[i][j] = new Cell(i, j);
-                tableCell.addEventListener("click", this.selectCell);
+                // Create CellModel and CellView
+                let cellView = new CellView(tableCell);
+                let cellModel = new CellModel(i, j, cellView);
+                tableCell.addEventListener("click", function(event) {
+                    selectCell(cellModel);
+                });
             }
 
             tableRoot.appendChild(tableRow);
         }
 
         gridContainer.appendChild(tableRoot);
-    }
-
-    selectCell() {
-        this.className = "";
-        this.classList.add(getClassOfActiveButton());
     }
 }

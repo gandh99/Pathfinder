@@ -1,4 +1,4 @@
-import Grid from "./Grid.js";
+import Grid from "./grid.js";
 
 // Data for creating the grid
 let numberOfRows = 15;
