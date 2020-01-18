@@ -1,4 +1,5 @@
 import Cell from "./Cell.js";
+import {getClassOfActiveButton} from "./utilityBar.js";
 
 export default class Grid {
     constructor(numberOfRows, numberOfCols) {
@@ -24,7 +25,7 @@ export default class Grid {
         let gridContainer = document.getElementById("grid-container");
         let tableRoot = document.createElement("table");
         tableRoot.id = "grid-table";
-        
+
         for (let i = 0; i < this.numberOfRows; i++) {
             let tableRow = document.createElement("tr");
 
@@ -32,11 +33,17 @@ export default class Grid {
                 let tableCell = document.createElement("td");
                 tableRow.appendChild(tableCell);
                 this.grid[i][j] = new Cell(i, j);
+                tableCell.addEventListener("click", this.selectCell);
             }
 
             tableRoot.appendChild(tableRow);
         }
 
         gridContainer.appendChild(tableRoot);
+    }
+
+    selectCell() {
+        this.className = "";
+        this.classList.add(getClassOfActiveButton());
     }
 }
