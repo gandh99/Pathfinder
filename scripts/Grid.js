@@ -11,7 +11,6 @@ export default class Grid {
         this.grid = new Array(this.numberOfRows);
         this.adjacencyList;
         this.initGrid();
-        this.initGraph();
     }
 
     // Draw the 2D grid and assign click listeners
@@ -69,6 +68,7 @@ export default class Grid {
     }
 
     startAnimation() {
+        this.initGraph();
         dijkstra(this.adjacencyList, this.grid, this.numberOfRows, this.numberOfCols);
     }
 }

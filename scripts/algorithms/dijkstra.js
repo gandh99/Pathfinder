@@ -13,6 +13,7 @@ export function dijkstra(adjacencyList, grid, numberOfRows, numberOfCols) {
     distanceMatrix[sourceCell.getX][sourceCell.getY] = 0;
 
     for (let u = 0; u < totalNumberOfCells; u++) {
+        // TODO: Fix bug where if the destination is surrounded by obstacles, minDistanceCell would be undefined
         let minDistanceCell = getMinimumDistanceCell(grid, distanceMatrix, shortestPathSet, numberOfRows, numberOfCols);
         shortestPathSet[minDistanceCell.getX][minDistanceCell.getY] = true;
 

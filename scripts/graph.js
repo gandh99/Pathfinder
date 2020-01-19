@@ -1,3 +1,5 @@
+import CellState from "./cellstate.js";
+
 export default class Graph {
     constructor(grid, numberOfRows, numberOfCols) {
         this.grid = grid;
@@ -28,10 +30,10 @@ export default class Graph {
 
     getEdges(x, y) {
         let edges = [];
-        if (this.isWithinBounds(x - 1, y)) { edges.push(this.grid[x - 1][y]); }
-        if (this.isWithinBounds(x, y - 1)) { edges.push(this.grid[x][y - 1]); }
-        if (this.isWithinBounds(x + 1, y)) { edges.push(this.grid[x + 1][y]); }
-        if (this.isWithinBounds(x, y + 1)) { edges.push(this.grid[x][y + 1]); }
+        if (this.isWithinBounds(x - 1, y) && this.grid[x - 1][y].getCellState != CellState.OBSTACLE) { edges.push(this.grid[x - 1][y]); }
+        if (this.isWithinBounds(x, y - 1) && this.grid[x][y - 1].getCellState != CellState.OBSTACLE) { edges.push(this.grid[x][y - 1]); }
+        if (this.isWithinBounds(x + 1, y) && this.grid[x + 1][y].getCellState != CellState.OBSTACLE) { edges.push(this.grid[x + 1][y]); }
+        if (this.isWithinBounds(x, y + 1) && this.grid[x][y + 1].getCellState != CellState.OBSTACLE) { edges.push(this.grid[x][y + 1]); }
 
         return edges;
     }
