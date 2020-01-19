@@ -7,6 +7,7 @@ export function dijkstra(adjacencyList, grid, numberOfRows, numberOfCols) {
     let distanceMatrix = initDistanceMatrix(grid, numberOfRows, numberOfCols);
     let shortestPathSet = initShortestPathSet(grid, numberOfRows, numberOfCols);
     let previousArray = {};
+    let visitedNodesInOrder = []; //test
 
     // Initialise distance from source
     distanceMatrix[sourceCell.getX][sourceCell.getY] = 0;
@@ -19,21 +20,26 @@ export function dijkstra(adjacencyList, grid, numberOfRows, numberOfCols) {
         for (let v = 0; v < adjacencyList[minDistanceCell.getKey].length; v++) {
             let neighbourCell = adjacencyList[minDistanceCell.getKey][v];
             let costToNeighbourCell = 1;
+
+            // We will use this when calling animateDijkstra()
+            visitedNodesInOrder.push(neighbourCell);
+
             if (distanceMatrix[minDistanceCell.getX][minDistanceCell.getY] + costToNeighbourCell
                 < distanceMatrix[neighbourCell.getX][neighbourCell.getY]) {
                 distanceMatrix[neighbourCell.getX][neighbourCell.getY]
                     = distanceMatrix[minDistanceCell.getX][minDistanceCell.getY] + costToNeighbourCell;
-                    previousArray[neighbourCell.getKey] = minDistanceCell; 
+                previousArray[neighbourCell.getKey] = minDistanceCell;
             }
-        }
 
-        // Stop if destination reached
-        if (destinationCell == minDistanceCell) {
-            break;
+            // Stop if destination reached
+            if (destinationCell == neighbourCell) {
+                animateDijkstra(previousArray, visitedNodesInOrder, sourceCell, destinationCell);
+                return;
+            }
         }
     }
 
-    printShortestPath(previousArray, sourceCell, destinationCell);
+    animateDijkstra(previousArray, visitedNodesInOrder, sourceCell, destinationCell);
 }
 
 function getLocationOfCellState(grid, numberOfRows, numberOfCols, cellstate) {
@@ -91,7 +97,15 @@ function getMinimumDistanceCell(grid, distanceMatrix, shortestPathSet, numberOfR
     return shortestDistanceCell;
 }
 
-function printShortestPath(previousArray, sourceCell, destinationCell) {
+function animateDijkstra(previousArray, visitedNodesInOrder, sourceCell, destinationCell) {
+    for (let i = 0; i < visitedNodesInOrder.length; i++) {
+        setTimeout(() => {
+            if (visitedNodesInOrder[i] != sourceCell && visitedNodesInOrder[i] != destinationCell) {
+                visitedNodesInOrder[i].updateCellState(CellState.VISITED);
+            }
+        }, i * 30);
+    }
+
     let currentCell = previousArray[destinationCell.getKey];
     while (currentCell != sourceCell) {
         currentCell.updateCellState(CellState.SHORTEST_PATH);

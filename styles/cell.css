@@ -6,6 +6,10 @@
     background-color: red;
 }
 
+.visited-cell {
+    background-color: lightblue;
+}
+
 .shortest-path-cell {
     background-color: yellow;
 }

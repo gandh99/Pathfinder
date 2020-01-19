@@ -3,6 +3,7 @@ const CellState = {
     BLANK: "blank-cell",
     SOURCE: "source-cell",
     DESTINATION: "destination-cell",
+    VISITED: "visited-cell",
     SHORTEST_PATH: "shortest-path-cell"
 } 
 
