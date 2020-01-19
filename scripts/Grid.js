@@ -1,7 +1,7 @@
 import CellModel from "./cellmodel.js";
 import CellView from "./cellview.js";
 import Graph from "./graph.js";
-import {selectCell} from "./controllers.js";
+import { selectCell } from "./controllers.js";
 import { dijkstra } from "./algorithms/dijkstra.js";
 
 export default class Grid {
@@ -33,8 +33,16 @@ export default class Grid {
                 let cellView = new CellView(tableCell);
                 let cellModel = new CellModel(i, j, cellView);
                 this.grid[i][j] = cellModel;
-                tableCell.addEventListener("click", function(event) {
+
+                // Add event listeners to the table cell
+                tableCell.addEventListener("mousedown", function (event) {
                     selectCell(cellModel);
+                });
+                tableCell.addEventListener("mouseenter", function (event) {
+                    selectCell(cellModel);
+                });
+                tableCell.addEventListener("mouseup", function (event) {
+                    getEventListeners().click.forEach((e) => { e.remove(); console.log(e); })
                 });
             }
 
