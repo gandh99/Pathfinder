@@ -1,5 +1,6 @@
 import CellModel from "./cellmodel.js";
 import CellView from "./cellview.js";
+import Graph from "./graph.js";
 import {selectCell} from "./controllers.js";
 
 export default class Grid {
@@ -7,7 +8,9 @@ export default class Grid {
         this.numberOfRows = numberOfRows;
         this.numberOfCols = numberOfCols;
         this.grid = new Array(this.numberOfRows);
+        this.graph;
         this.initGrid();
+        this.initGraph();
     }
 
     // Draw the 2D grid and assign click listeners
@@ -38,5 +41,10 @@ export default class Grid {
         }
 
         gridContainer.appendChild(tableRoot);
+    }
+
+    initGraph() {
+        this.graph = new Graph(this.grid, this.numberOfRows, this.numberOfCols);
+        let adjacencyList = this.graph.getGraph;
     }
 }

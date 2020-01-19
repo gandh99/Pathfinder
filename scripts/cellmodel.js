@@ -14,4 +14,8 @@ export default class CellModel {
     get getCellState() {
         return this.cellState;
     }
+
+    get getKey() {
+        return this.x + "-" + this.y;
+    }
 }
