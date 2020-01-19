@@ -5,3 +5,7 @@
 .destination-cell {
     background-color: red;
 }
+
+.shortest-path-cell {
+    background-color: yellow;
+}

@@ -6,6 +6,7 @@ export function dijkstra(adjacencyList, grid, numberOfRows, numberOfCols) {
     let destinationCell = getLocationOfCellState(grid, numberOfRows, numberOfCols, CellState.DESTINATION);
     let distanceMatrix = initDistanceMatrix(grid, numberOfRows, numberOfCols);
     let shortestPathSet = initShortestPathSet(grid, numberOfRows, numberOfCols);
+    let previousArray = {};
 
     // Initialise distance from source
     distanceMatrix[sourceCell.getX][sourceCell.getY] = 0;
@@ -22,6 +23,7 @@ export function dijkstra(adjacencyList, grid, numberOfRows, numberOfCols) {
                 < distanceMatrix[neighbourCell.getX][neighbourCell.getY]) {
                 distanceMatrix[neighbourCell.getX][neighbourCell.getY]
                     = distanceMatrix[minDistanceCell.getX][minDistanceCell.getY] + costToNeighbourCell;
+                    previousArray[neighbourCell.getKey] = minDistanceCell; 
             }
         }
 
@@ -31,7 +33,7 @@ export function dijkstra(adjacencyList, grid, numberOfRows, numberOfCols) {
         }
     }
 
-    console.log(distanceMatrix);
+    printShortestPath(previousArray, sourceCell, destinationCell);
 }
 
 function getLocationOfCellState(grid, numberOfRows, numberOfCols, cellstate) {
@@ -87,4 +89,12 @@ function getMinimumDistanceCell(grid, distanceMatrix, shortestPathSet, numberOfR
     }
 
     return shortestDistanceCell;
+}
+
+function printShortestPath(previousArray, sourceCell, destinationCell) {
+    let currentCell = previousArray[destinationCell.getKey];
+    while (currentCell != sourceCell) {
+        currentCell.updateCellState(CellState.SHORTEST_PATH);
+        currentCell = previousArray[currentCell.getKey];
+    }
 }
