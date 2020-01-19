@@ -19,6 +19,7 @@ export default class Grid {
         let gridContainer = document.getElementById("grid-container");
         let tableRoot = document.createElement("table");
         tableRoot.id = "grid-table";
+        let isToggling = false;
 
         for (let i = 0; i < this.numberOfRows; i++) {
             let tableRow = document.createElement("tr");
@@ -36,13 +37,23 @@ export default class Grid {
 
                 // Add event listeners to the table cell
                 tableCell.addEventListener("mousedown", function (event) {
-                    selectCell(cellModel);
+                    isToggling = true;
+
+                    if (event.target !== tableRoot) {
+                        if (isToggling === false) {
+                            return;
+                        }
+                        selectCell(cellModel);
+                    }
                 });
                 tableCell.addEventListener("mouseenter", function (event) {
+                    if (isToggling === false) {
+                        return;
+                    }
                     selectCell(cellModel);
                 });
                 tableCell.addEventListener("mouseup", function (event) {
-                    getEventListeners().click.forEach((e) => { e.remove(); console.log(e); })
+                    isToggling = false;
                 });
             }
 
