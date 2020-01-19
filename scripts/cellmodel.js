@@ -1,9 +1,11 @@
+import CellState from "./cellstate.js";
+
 export default class CellModel {
     constructor(x, y, cellView) {
         this.x = x;
         this.y = y;
         this.cellView = cellView;
-        this.cellState;
+        this.cellState = CellState.BLANK;
     }
 
     updateCellState(cellState) {

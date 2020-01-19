@@ -2,6 +2,7 @@ import CellModel from "./cellmodel.js";
 import CellView from "./cellview.js";
 import Graph from "./graph.js";
 import {selectCell} from "./controllers.js";
+import { dijkstra } from "./algorithms/dijkstra.js";
 
 export default class Grid {
     constructor(numberOfRows, numberOfCols) {
@@ -46,5 +47,9 @@ export default class Grid {
     initGraph() {
         this.graph = new Graph(this.grid, this.numberOfRows, this.numberOfCols);
         let adjacencyList = this.graph.getGraph;
+    }
+
+    startAnimation() {
+        dijkstra(this.adjacencyList, this.grid, this.numberOfRows, this.numberOfCols);
     }
 }

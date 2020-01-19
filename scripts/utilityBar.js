@@ -1,4 +1,5 @@
 import CellState from "./cellstate.js";
+import { activateCellStateButton } from "./controllers.js";
 
 // Class names
 const ACTIVE_BUTTON_CLASS_NAME = "active-button";
@@ -12,23 +13,12 @@ let buttonToCellStateMap = new Map([
     [destinationButton.id, CellState.DESTINATION]
 ]);
 
-initCellStateButtons();
-
-function initCellStateButtons() {
-    cellStateButtons.forEach(button => {
-        button.addEventListener("click", activateCellStateButton);
+// Assign functionality to the cell state buttons
+cellStateButtons.forEach(button => {
+    button.addEventListener("click", function () {
+        activateCellStateButton(button, cellStateButtons);
     });
-}
-
-function activateCellStateButton() {
-    // First deactivate all the cell state buttons since only maximum of 1 should be active at any given time
-    cellStateButtons.forEach(button => {
-        button.classList.remove(ACTIVE_BUTTON_CLASS_NAME);
-    });
-
-    // Activate the selected cell state button by giving adding a class name to it
-    this.classList.add(ACTIVE_BUTTON_CLASS_NAME);
-}
+});
 
 export function getClassOfActiveButton() {
     for (let i = 0; i < cellStateButtons.length; i++) {
@@ -37,8 +27,4 @@ export function getClassOfActiveButton() {
             return buttonToCellStateMap.get(button.id);
         }
     }
-}
-
-export function getCellStateFromValue(value) {
-    return Object.keys(CellState).find(key => CellState[key] === value);
 }
