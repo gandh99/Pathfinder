@@ -6,6 +6,10 @@
     background-color: red;
 }
 
+.obstacle-cell {
+    background-color: gray;
+}
+
 .visited-cell {
     background-color: lightblue;
 }

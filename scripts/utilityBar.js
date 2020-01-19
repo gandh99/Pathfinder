@@ -7,10 +7,12 @@ const ACTIVE_BUTTON_CLASS_NAME = "active-button";
 // Initialise the utility buttons
 let sourceButton = document.getElementById("source-button");
 let destinationButton = document.getElementById("destination-button");
-let cellStateButtons = [sourceButton, destinationButton];
+let obstacleButton = document.getElementById("obstacle-button");
+let cellStateButtons = [sourceButton, destinationButton, obstacleButton];
 let buttonToCellStateMap = new Map([
     [sourceButton.id, CellState.SOURCE],
-    [destinationButton.id, CellState.DESTINATION]
+    [destinationButton.id, CellState.DESTINATION],
+    [obstacleButton.id, CellState.OBSTACLE]
 ]);
 
 // Assign functionality to the cell state buttons

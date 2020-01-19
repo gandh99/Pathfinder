@@ -24,6 +24,7 @@ export function dijkstra(adjacencyList, grid, numberOfRows, numberOfCols) {
             // We will use this when calling animateDijkstra()
             visitedNodesInOrder.push(neighbourCell);
 
+            // Update distanceMatrix if a shorter route was found to reach this current cell
             if (distanceMatrix[minDistanceCell.getX][minDistanceCell.getY] + costToNeighbourCell
                 < distanceMatrix[neighbourCell.getX][neighbourCell.getY]) {
                 distanceMatrix[neighbourCell.getX][neighbourCell.getY]
@@ -98,15 +99,16 @@ function getMinimumDistanceCell(grid, distanceMatrix, shortestPathSet, numberOfR
 }
 
 function animateDijkstra(previousArray, visitedNodesInOrder, sourceCell, destinationCell) {
+    let delay = 1;
     new Promise((resolve, reject) => {
         for (let i = 0; i < visitedNodesInOrder.length; i++) {
             setTimeout(() => {
                 if (visitedNodesInOrder[i] != sourceCell && visitedNodesInOrder[i] != destinationCell) {
                     visitedNodesInOrder[i].updateCellState(CellState.VISITED);
                 }
-            }, i * 10);
+            }, i * delay);
         }
-        resolve(visitedNodesInOrder.length * 10);
+        resolve(visitedNodesInOrder.length * delay);
     }).then((totalPriorDelay) => {
         setTimeout(() => {
             let currentCell = previousArray[destinationCell.getKey];
