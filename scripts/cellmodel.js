@@ -20,4 +20,12 @@ export default class CellModel {
     get getKey() {
         return this.x + "-" + this.y;
     }
+
+    get getX() {
+        return this.x;
+    }
+
+    get getY() {
+        return this.y;
+    }
 }

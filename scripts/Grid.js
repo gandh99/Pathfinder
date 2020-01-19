@@ -9,7 +9,7 @@ export default class Grid {
         this.numberOfRows = numberOfRows;
         this.numberOfCols = numberOfCols;
         this.grid = new Array(this.numberOfRows);
-        this.graph;
+        this.adjacencyList;
         this.initGrid();
         this.initGraph();
     }
@@ -45,8 +45,8 @@ export default class Grid {
     }
 
     initGraph() {
-        this.graph = new Graph(this.grid, this.numberOfRows, this.numberOfCols);
-        let adjacencyList = this.graph.getGraph;
+        let graph = new Graph(this.grid, this.numberOfRows, this.numberOfCols);
+        this.adjacencyList = graph.getGraph;
     }
 
     startAnimation() {
