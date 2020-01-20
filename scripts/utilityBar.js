@@ -26,6 +26,7 @@ let sourceButtonController = new SourceButtonController(grid);
 sourceButton.addEventListener("click", () => {
     activateCellStateButton(sourceButton, cellStateButtons);
     obstacleButtonController.deactivate();
+    destinationButtonController.deactivate();
     sourceButtonController.toggleActivate();
 })
 
@@ -33,12 +34,15 @@ let destinationButtonController = new DestinationButtonController(grid);
 destinationButton.addEventListener("click", () => {
     activateCellStateButton(destinationButton, cellStateButtons);
     obstacleButtonController.deactivate();
+    sourceButtonController.deactivate();
     destinationButtonController.toggleActivate();
 })
 
 let obstacleButtonController = new ObstacleButtonController(grid);
 obstacleButton.addEventListener("click", () => {
     activateCellStateButton(obstacleButton, cellStateButtons);
+    sourceButtonController.deactivate();
+    destinationButtonController.deactivate();
     obstacleButtonController.toggleActivate();
 })
 

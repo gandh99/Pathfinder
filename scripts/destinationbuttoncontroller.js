@@ -17,7 +17,7 @@ export default class DestinationButtonController {
                 tableCell.addEventListener("click", () => {
                     if (this.isActivated) {
                         selectCell(cellModel);
-                    }
+                    } 
                 });
             }
         }
@@ -25,5 +25,9 @@ export default class DestinationButtonController {
 
     toggleActivate() {
         this.isActivated = !this.isActivated;
+    }
+
+    deactivate() {
+        this.isActivated = false;
     }
 }
