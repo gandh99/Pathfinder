@@ -48,6 +48,10 @@ cellStateButtons.forEach(button => {
                     if (isToggling === false) {
                         return;
                     }
+                    if (getClassOfActiveButton() == CellState.SOURCE
+                        || getClassOfActiveButton() == CellState.DESTINATION) {
+                        button.classList.remove(ACTIVE_BUTTON_CLASS_NAME);
+                    }
                     selectCell(cellModel);
                 });
                 tableCell.addEventListener("mouseup", function (event) {
