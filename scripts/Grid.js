@@ -1,14 +1,14 @@
 import CellModel from "./cellmodel.js";
 import CellView from "./cellview.js";
 import Graph from "./graph.js";
-import { selectCell } from "./controllers.js";
 import { dijkstra } from "./algorithms/dijkstra.js";
 
 export default class Grid {
     constructor(numberOfRows, numberOfCols) {
         this.numberOfRows = numberOfRows;
         this.numberOfCols = numberOfCols;
-        this.grid = new Array(this.numberOfRows);
+        this.cellModelMatrix = new Array(this.numberOfRows);
+        this.tableCellMatrix = new Array(this.numberOfRows);
         this.adjacencyList;
         this.initGrid();
     }
@@ -18,42 +18,21 @@ export default class Grid {
         let gridContainer = document.getElementById("grid-container");
         let tableRoot = document.createElement("table");
         tableRoot.id = "grid-table";
-        let isToggling = false;
 
         for (let i = 0; i < this.numberOfRows; i++) {
             let tableRow = document.createElement("tr");
-            this.grid[i] = new Array(this.numberOfCols);
+            this.cellModelMatrix[i] = new Array(this.numberOfCols);
+            this.tableCellMatrix[i] = new Array(this.numberOfCols);
 
             for (let j = 0; j < this.numberOfCols; j++) {
                 // Draw table cell
                 let tableCell = document.createElement("td");
                 tableRow.appendChild(tableCell);
 
-                // Create CellModel and CellView
                 let cellView = new CellView(tableCell);
                 let cellModel = new CellModel(i, j, cellView);
-                this.grid[i][j] = cellModel;
-
-                // Add event listeners to the table cell
-                tableCell.addEventListener("mousedown", function (event) {
-                    isToggling = true;
-
-                    if (event.target !== tableRoot) {
-                        if (isToggling === false) {
-                            return;
-                        }
-                        selectCell(cellModel);
-                    }
-                });
-                tableCell.addEventListener("mouseenter", function (event) {
-                    if (isToggling === false) {
-                        return;
-                    }
-                    selectCell(cellModel);
-                });
-                tableCell.addEventListener("mouseup", function (event) {
-                    isToggling = false;
-                });
+                this.cellModelMatrix[i][j] = cellModel;
+                this.tableCellMatrix[i][j] = tableCell;
             }
 
             tableRoot.appendChild(tableRow);
@@ -63,12 +42,20 @@ export default class Grid {
     }
 
     initGraph() {
-        let graph = new Graph(this.grid, this.numberOfRows, this.numberOfCols);
+        let graph = new Graph(this.cellModelMatrix, this.numberOfRows, this.numberOfCols);
         this.adjacencyList = graph.getGraph;
     }
 
     startAnimation() {
         this.initGraph();
-        dijkstra(this.adjacencyList, this.grid, this.numberOfRows, this.numberOfCols);
+        dijkstra(this.adjacencyList, this.cellModelMatrix, this.numberOfRows, this.numberOfCols);
+    }
+
+    get getCellModelMatrix() {
+        return this.cellModelMatrix;
+    }
+
+    get getTableCellMatrix() {
+        return this.tableCellMatrix;
     }
 }

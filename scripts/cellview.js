@@ -1,13 +1,13 @@
 import CellState from "./cellstate.js";
 
 export default class CellView {
-    constructor(tableView) {
-        this.tableView = tableView;
+    constructor(tableCell) {
+        this.tableCell = tableCell;
     }
 
     updateCellStateView(cellModel) {
         let classOfActiveButton = cellModel.getCellState;
-        this.tableView.className = "";
-        this.tableView.classList.add(classOfActiveButton);
+        this.tableCell.className = "";
+        this.tableCell.classList.add(classOfActiveButton);
     }
 }
