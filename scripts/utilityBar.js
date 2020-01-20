@@ -1,6 +1,8 @@
 import CellState from "./cellstate.js";
 import { activateCellStateButton, selectCell } from "./controllers.js";
 import { grid } from "./index.js";
+import SourceButtonController from "./sourcebuttoncontroller.js";
+import DestinationButtonController from "./destinationbuttoncontroller.js";
 
 // Class names
 const ACTIVE_BUTTON_CLASS_NAME = "active-button";
@@ -19,48 +21,60 @@ let buttonToCellStateMap = new Map([
     [eraseButton.id, CellState.BLANK]
 ]);
 
+let sourceButtonController = new SourceButtonController(grid);
+sourceButton.addEventListener("click", () => {
+    activateCellStateButton(sourceButton, cellStateButtons);
+    sourceButtonController.toggleActivate();
+})
+
+let destinationButtonController = new DestinationButtonController(grid);
+destinationButton.addEventListener("click", () => {
+    activateCellStateButton(destinationButton, cellStateButtons);
+    destinationButtonController.toggleActivate();
+})
+
 // Assign functionality to the cell state buttons
-cellStateButtons.forEach(button => {
-    button.addEventListener("click", function () {
-        let isToggling = false;
-        let tableRoot = document.getElementById("grid-table");
-        let cellModelMatrix = grid.getCellModelMatrix;
-        let tableCellMatrix = grid.getTableCellMatrix;
+// cellStateButtons.forEach(button => {
+//     button.addEventListener("click", function () {
+//         let isToggling = false;
+//         let tableRoot = document.getElementById("grid-table");
+//         let cellModelMatrix = grid.getCellModelMatrix;
+//         let tableCellMatrix = grid.getTableCellMatrix;
 
-        activateCellStateButton(button, cellStateButtons);
+//         activateCellStateButton(button, cellStateButtons);
 
-        for (let i = 0; i < grid.numberOfRows; i++) {
-            for (let j = 0; j < grid.numberOfCols; j++) {
-                let tableCell = tableCellMatrix[i][j];
-                let cellModel = cellModelMatrix[i][j];
+//         for (let i = 0; i < grid.numberOfRows; i++) {
+//             for (let j = 0; j < grid.numberOfCols; j++) {
+//                 let tableCell = tableCellMatrix[i][j];
+//                 let cellModel = cellModelMatrix[i][j];
 
-                tableCell.addEventListener("mousedown", function (event) {
-                    isToggling = true;
+//                 tableCell.addEventListener("mousedown", function (event) {
+//                     isToggling = true;
 
-                    if (event.target !== tableRoot) {
-                        if (isToggling === false) {
-                            return;
-                        }
-                        selectCell(cellModel);
-                    }
-                });
-                tableCell.addEventListener("mouseenter", function (event) {
-                    if (isToggling === false) {
-                        return;
-                    }
-                    if (getClassOfActiveButton() == CellState.SOURCE
-                        || getClassOfActiveButton() == CellState.DESTINATION) {
-                        button.classList.remove(ACTIVE_BUTTON_CLASS_NAME);
-                    }
-                    selectCell(cellModel);
-                });
-                tableCell.addEventListener("mouseup", function (event) {
-                    isToggling = false;
-                });
-            }
-        }
-    });
-});
+//                     if (event.target !== tableRoot) {
+//                         if (isToggling === false) {
+//                             return;
+//                         }
+//                         selectCell(cellModel);
+//                     }
+//                 });
+//                 tableCell.addEventListener("mouseenter", function (event) {
+//                     if (isToggling === false) {
+//                         return;
+//                     }
+//                     if (getClassOfActiveButton() == CellState.SOURCE
+//                         || getClassOfActiveButton() == CellState.DESTINATION) {
+//                         button.classList.remove(ACTIVE_BUTTON_CLASS_NAME);
+//                     }
+//                     selectCell(cellModel);
+//                 });
+//                 tableCell.addEventListener("mouseup", function (event) {
+//                     isToggling = false;
+//                 });
+//             }
+//         }
+//     });
+// });
 
 resetButton.addEventListener("click", () => {
     let cellModelMatrix = grid.getCellModelMatrix;
