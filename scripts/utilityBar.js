@@ -9,6 +9,7 @@ const ACTIVE_BUTTON_CLASS_NAME = "active-button";
 let sourceButton = document.getElementById("source-button");
 let destinationButton = document.getElementById("destination-button");
 let obstacleButton = document.getElementById("obstacle-button");
+let resetButton = document.getElementById("reset-button");
 let cellStateButtons = [sourceButton, destinationButton, obstacleButton];
 let buttonToCellStateMap = new Map([
     [sourceButton.id, CellState.SOURCE],
@@ -53,6 +54,16 @@ cellStateButtons.forEach(button => {
             }
         }
     });
+});
+
+resetButton.addEventListener("click", () => {
+    let cellModelMatrix = grid.getCellModelMatrix;
+
+    for (let i = 0; i < grid.numberOfRows; i++) {
+        for (let j = 0; j < grid.numberOfCols; j++) {
+            cellModelMatrix[i][j].updateCellState(CellState.BLANK);
+        }
+    }
 });
 
 export function getClassOfActiveButton() {
