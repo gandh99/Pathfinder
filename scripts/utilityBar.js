@@ -10,11 +10,13 @@ let sourceButton = document.getElementById("source-button");
 let destinationButton = document.getElementById("destination-button");
 let obstacleButton = document.getElementById("obstacle-button");
 let resetButton = document.getElementById("reset-button");
-let cellStateButtons = [sourceButton, destinationButton, obstacleButton];
+let eraseButton = document.getElementById("erase-button");
+let cellStateButtons = [sourceButton, destinationButton, obstacleButton, eraseButton];
 let buttonToCellStateMap = new Map([
     [sourceButton.id, CellState.SOURCE],
     [destinationButton.id, CellState.DESTINATION],
-    [obstacleButton.id, CellState.OBSTACLE]
+    [obstacleButton.id, CellState.OBSTACLE],
+    [eraseButton.id, CellState.BLANK]
 ]);
 
 // Assign functionality to the cell state buttons
