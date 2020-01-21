@@ -21,7 +21,7 @@ export default class DestinationButtonController {
                     if (this.isActivated) {
                         this.reassignCellStateLocation(tableCell, cellModel);
                         this.selectCell(cellModel);
-                    } 
+                    }
                 });
             }
         }
@@ -32,6 +32,7 @@ export default class DestinationButtonController {
         cellModel.updateCellState(classOfActiveButton);
     }
 
+    // Ensures there can only be one destination on the board at any point in time
     reassignCellStateLocation(tableCell, cellModel) {
         if (this.destinationTableCell != null && this.destinationCellModel != null) {
             this.destinationTableCell.classList.remove("destination-cell");

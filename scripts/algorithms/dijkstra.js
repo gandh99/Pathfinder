@@ -102,7 +102,7 @@ function getMinimumDistanceCell(grid, distanceMatrix, shortestPathSet, numberOfR
 }
 
 function animateDijkstra(previousArray, visitedNodesInOrder, sourceCell, destinationCell) {
-    let delay = 1;
+    let delay = 2;
     new Promise((resolve, reject) => {
         for (let i = 0; i < visitedNodesInOrder.length; i++) {
             setTimeout(() => {

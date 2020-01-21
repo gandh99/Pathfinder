@@ -32,6 +32,7 @@ export default class SourceButtonController {
         cellModel.updateCellState(classOfActiveButton);
     }
 
+    // Ensures there can only be one source on the board at any point in time
     reassignCellStateLocation(tableCell, cellModel) {
         if (this.sourceTableCell != null && this.sourceCellModel != null) {
             this.sourceTableCell.classList.remove("source-cell");
