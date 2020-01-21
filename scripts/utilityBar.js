@@ -1,5 +1,4 @@
 import CellState from "./cellstate.js";
-import { activateCellStateButton } from "./controllers/controllers.js";
 import { grid } from "./index.js";
 import SourceButtonController from "./controllers/sourcebuttoncontroller.js";
 import DestinationButtonController from "./controllers/destinationbuttoncontroller.js";
@@ -40,10 +39,22 @@ let cellStateButtonToControllerMap = new Map([
 cellStateButtonToControllerMap.forEach((controller, button) => {
     button.addEventListener("click", () => {
         activateCellStateButton(button, cellStateButtons);
-        cellStateButtonControllers.map(button => button.deactivate());
+        cellStateButtonControllers.map(otherController => otherController.deactivate());
         controller.activate();
     });
 });
+
+function activateCellStateButton(button, cellStateButtons) {
+    const ACTIVE_BUTTON_CLASS_NAME = "active-button";
+
+    // First deactivate all the cell state buttons since only maximum of 1 should be active at any given time
+    cellStateButtons.forEach(button => {
+        button.classList.remove(ACTIVE_BUTTON_CLASS_NAME);
+    });
+
+    // Activate the selected cell state button by giving adding a class name to it
+    button.classList.add(ACTIVE_BUTTON_CLASS_NAME);
+}
 
 // Assign the resetButton its controller
 let resetButton = document.getElementById("reset-button");

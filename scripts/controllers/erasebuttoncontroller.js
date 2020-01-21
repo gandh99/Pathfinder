@@ -1,4 +1,4 @@
-import { selectCell } from "./controllers.js";
+import { getClassOfActiveCellStateButton } from "../utilitybar.js";
 
 export default class EraseButtonController {
     constructor(grid) {
@@ -16,11 +16,16 @@ export default class EraseButtonController {
                 let cellModel = this.cellModelMatrix[i][j];
                 tableCell.addEventListener("click", () => {
                     if (this.isActivated) {
-                        selectCell(cellModel);
+                        this.selectCell(cellModel);
                     }
                 });
             }
         }
+    }
+
+    selectCell(cellModel) {
+        let classOfActiveButton = getClassOfActiveCellStateButton();
+        cellModel.updateCellState(classOfActiveButton);
     }
 
     activate() {

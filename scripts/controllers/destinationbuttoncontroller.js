@@ -1,4 +1,5 @@
-import { selectCell } from "./controllers.js";
+import CellState from "../cellstate.js";
+import { getClassOfActiveCellStateButton } from "../utilitybar.js";
 
 export default class DestinationButtonController {
     constructor(grid) {
@@ -6,6 +7,8 @@ export default class DestinationButtonController {
         this.tableCellMatrix = grid.getTableCellMatrix;
         this.cellModelMatrix = grid.getCellModelMatrix;
         this.isActivated = false;
+        this.destinationTableCell;
+        this.destinationCellModel;
         this.initFunctionality();
     }
 
@@ -16,11 +19,26 @@ export default class DestinationButtonController {
                 let cellModel = this.cellModelMatrix[i][j];
                 tableCell.addEventListener("click", () => {
                     if (this.isActivated) {
-                        selectCell(cellModel);
+                        this.reassignCellStateLocation(tableCell, cellModel);
+                        this.selectCell(cellModel);
                     } 
                 });
             }
         }
+    }
+
+    selectCell(cellModel) {
+        let classOfActiveButton = getClassOfActiveCellStateButton();
+        cellModel.updateCellState(classOfActiveButton);
+    }
+
+    reassignCellStateLocation(tableCell, cellModel) {
+        if (this.destinationTableCell != null && this.destinationCellModel != null) {
+            this.destinationTableCell.classList.remove("destination-cell");
+            this.destinationCellModel.updateCellState(CellState.BLANK);
+        }
+        this.destinationTableCell = tableCell;
+        this.destinationCellModel = cellModel;
     }
 
     activate() {

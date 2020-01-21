@@ -1,4 +1,4 @@
-import { selectCell } from "./controllers.js";
+import { getClassOfActiveCellStateButton } from "../utilitybar.js";
 
 export default class ObstacleButtonController {
     constructor(grid) {
@@ -29,7 +29,7 @@ export default class ObstacleButtonController {
                         if (isToggling === false) {
                             return;
                         }
-                        selectCell(cellModel);
+                        this.selectCell(cellModel);
                     }
                 });
                 tableCell.addEventListener("mouseenter", (event) => {
@@ -41,7 +41,7 @@ export default class ObstacleButtonController {
                         return;
                     }
                     
-                    selectCell(cellModel);
+                    this.selectCell(cellModel);
                 });
                 tableCell.addEventListener("mouseup", (event) => {
                     if (!this.isActivated) {
@@ -52,6 +52,11 @@ export default class ObstacleButtonController {
                 });
             }
         }
+    }
+
+    selectCell(cellModel) {
+        let classOfActiveButton = getClassOfActiveCellStateButton();
+        cellModel.updateCellState(classOfActiveButton);
     }
 
     activate() {
