@@ -1,4 +1,4 @@
-import { getClassOfActiveButton } from "./utilitybar.js";
+import { getClassOfActiveButton } from "../utilitybar.js";
 
 export function selectCell(cellModel) {
     let classOfActiveButton = getClassOfActiveButton();

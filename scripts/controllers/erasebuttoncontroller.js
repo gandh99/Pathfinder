@@ -1,6 +1,6 @@
 import { selectCell } from "./controllers.js";
 
-export default class DestinationButtonController {
+export default class EraseButtonController {
     constructor(grid) {
         this.grid = grid;
         this.tableCellMatrix = grid.getTableCellMatrix;
@@ -17,14 +17,14 @@ export default class DestinationButtonController {
                 tableCell.addEventListener("click", () => {
                     if (this.isActivated) {
                         selectCell(cellModel);
-                    } 
+                    }
                 });
             }
         }
     }
 
-    toggleActivate() {
-        this.isActivated = !this.isActivated;
+    activate() {
+        this.isActivated = true;
     }
 
     deactivate() {

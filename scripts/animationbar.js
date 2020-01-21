@@ -1,4 +1,4 @@
-import { playAnimation } from "./controllers.js";
+import { playAnimation } from "./controllers/controllers.js";
 import { grid } from "./index.js";
 
 export let playButton = document.getElementById("play-button");

@@ -23,8 +23,8 @@ export default class SourceButtonController {
         }
     }
 
-    toggleActivate() {
-        this.isActivated = !this.isActivated;
+    activate() {
+        this.isActivated = true;
     }
 
     deactivate() {

@@ -18,7 +18,6 @@ export default class ObstacleButtonController {
                 let tableCell = this.tableCellMatrix[i][j];
                 let cellModel = this.cellModelMatrix[i][j];
 
-                /* */
                 tableCell.addEventListener("mousedown", (event) => {
                     if (!this.isActivated) {
                         return;
@@ -51,14 +50,12 @@ export default class ObstacleButtonController {
 
                     isToggling = false;
                 });
-
-                /* */
             }
         }
     }
 
-    toggleActivate() {
-        this.isActivated = !this.isActivated;
+    activate() {
+        this.isActivated = true;
     }
 
     deactivate() {
