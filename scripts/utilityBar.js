@@ -5,11 +5,12 @@ import SourceButtonController from "./controllers/sourcebuttoncontroller.js";
 import DestinationButtonController from "./controllers/destinationbuttoncontroller.js";
 import ObstacleButtonController from "./controllers/obstaclebuttoncontroller.js";
 import EraseButtonController from "./controllers/erasebuttoncontroller.js";
+import ResetButtonController from "./controllers/resetbuttoncontroller.js";
 
 // Class names
 const ACTIVE_BUTTON_CLASS_NAME = "active-button";
 
-// HTML buttons
+// Cell state buttons
 let sourceButton = document.getElementById("source-button");
 let destinationButton = document.getElementById("destination-button");
 let obstacleButton = document.getElementById("obstacle-button");
@@ -22,40 +23,36 @@ let buttonToCellStateMap = new Map([
     [eraseButton.id, CellState.BLANK]
 ]);
 
-// Button controllers
+// Button controllers for the cell states
 let sourceButtonController = new SourceButtonController(grid);
 let destinationButtonController = new DestinationButtonController(grid);
 let obstacleButtonController = new ObstacleButtonController(grid);
 let eraseButtonController = new EraseButtonController(grid);
-let buttonControllers = [sourceButtonController, destinationButtonController, obstacleButtonController, eraseButtonController];
-let buttonToControllerMap = new Map([
+let cellStateButtonControllers = [sourceButtonController, destinationButtonController, obstacleButtonController, eraseButtonController];
+let cellStateButtonToControllerMap = new Map([
     [sourceButton, sourceButtonController],
     [destinationButton, destinationButtonController],
     [obstacleButton, obstacleButtonController],
     [eraseButton, eraseButtonController],
 ]);
 
-// Assign each button to its respective controller
-buttonToControllerMap.forEach((controller, button) => {
+// Assign each cell state button to its respective controller
+cellStateButtonToControllerMap.forEach((controller, button) => {
     button.addEventListener("click", () => {
         activateCellStateButton(button, cellStateButtons);
-        buttonControllers.map(button => button.deactivate());
+        cellStateButtonControllers.map(button => button.deactivate());
         controller.activate();
     });
 });
 
+// Assign the resetButton its controller
 let resetButton = document.getElementById("reset-button");
+let resetButtonController = new ResetButtonController(grid);
 resetButton.addEventListener("click", () => {
-    let cellModelMatrix = grid.getCellModelMatrix;
-
-    for (let i = 0; i < grid.numberOfRows; i++) {
-        for (let j = 0; j < grid.numberOfCols; j++) {
-            cellModelMatrix[i][j].updateCellState(CellState.BLANK);
-        }
-    }
+    resetButtonController.activate();
 });
 
-export function getClassOfActiveButton() {
+export function getClassOfActiveCellStateButton() {
     for (let i = 0; i < cellStateButtons.length; i++) {
         let button = cellStateButtons[i];
         if (button.classList.contains(ACTIVE_BUTTON_CLASS_NAME)) {
