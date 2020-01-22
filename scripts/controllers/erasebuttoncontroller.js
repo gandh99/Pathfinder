@@ -1,8 +1,7 @@
-import { getClassOfActiveCellStateButton } from "../utilitybar.js";
-
 export default class EraseButtonController {
-    constructor(grid) {
+    constructor(grid, cellStateButtonGroup) {
         this.grid = grid;
+        this.cellStateButtonGroup = cellStateButtonGroup;
         this.tableCellMatrix = grid.getTableCellMatrix;
         this.cellModelMatrix = grid.getCellModelMatrix;
         this.isActivated = false;
@@ -24,7 +23,7 @@ export default class EraseButtonController {
     }
 
     selectCell(cellModel) {
-        let classOfActiveButton = getClassOfActiveCellStateButton();
+        let classOfActiveButton = this.cellStateButtonGroup.getClassOfActiveCellStateButton();
         cellModel.updateCellState(classOfActiveButton);
     }
 

@@ -1,9 +1,9 @@
 import CellState from "../cellstate.js";
-import { getClassOfActiveCellStateButton } from "../utilitybar.js";
 
 export default class SourceButtonController {
-    constructor(grid) {
+    constructor(grid, cellStateButtonGroup) {
         this.grid = grid;
+        this.cellStateButtonGroup = cellStateButtonGroup;
         this.tableCellMatrix = grid.getTableCellMatrix;
         this.cellModelMatrix = grid.getCellModelMatrix;
         this.isActivated = false;
@@ -28,7 +28,7 @@ export default class SourceButtonController {
     }
 
     selectCell(cellModel) {
-        let classOfActiveButton = getClassOfActiveCellStateButton();
+        let classOfActiveButton = this.cellStateButtonGroup.getClassOfActiveCellStateButton();
         cellModel.updateCellState(classOfActiveButton);
     }
 
