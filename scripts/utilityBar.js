@@ -5,9 +5,6 @@ import AnimationButtonGroup from "./buttongroup/animationbuttongroup.js";
 
 export default class UtilityBar {
     constructor() {
-        // Class names
-        const ACTIVE_BUTTON_CLASS_NAME = "active-button";
-
         this.cellStateButtonGroup = new CellStateButtonGroup(grid);
         this.animationButtonGroup = new AnimationButtonGroup(grid, this);
 

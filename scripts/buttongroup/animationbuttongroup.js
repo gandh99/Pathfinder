@@ -4,15 +4,19 @@ export default class AnimationButtonGroup {
     constructor(grid, utilityBar) {
         this.utilityBar = utilityBar;
         this.grid = grid;
-        this.playButton = document.getElementById("play-button");
+        this.getAnimationButtons();
         this.initFunctionality();
+    }
+
+    getAnimationButtons() {
+        this.playButton = document.getElementById("play-button");
     }
 
     initFunctionality() {
         this.playButton.addEventListener("click", () => {
             this.utilityBar.sendAnimationPlayEvent();
             this.grid.startAnimation();
-            // this.utilityBar.sendAnimationPlayEvent();
+            this.utilityBar.sendAnimationPlayEvent();
         });
     }
 }
