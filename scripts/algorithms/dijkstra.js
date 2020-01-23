@@ -1,6 +1,12 @@
 import CellState from "../cellstate.js";
 
-export function dijkstra(adjacencyList, cellModelMatrix, numberOfRows, numberOfCols, grid) {
+export function dijkstra(grid, animationButtonGroup) {
+    grid.initGraph();
+    let adjacencyList = grid.getAdjacencyList;
+    let cellModelMatrix = grid.getCellModelMatrix;
+    let numberOfRows = grid.getNumberOfRows;
+    let numberOfCols = grid.getNumberOfCols;
+
     let totalNumberOfCells = numberOfRows * numberOfCols;
     let sourceCell = getLocationOfCellState(cellModelMatrix, numberOfRows, numberOfCols, CellState.SOURCE);
     let destinationCell = getLocationOfCellState(cellModelMatrix, numberOfRows, numberOfCols, CellState.DESTINATION);
@@ -37,13 +43,13 @@ export function dijkstra(adjacencyList, cellModelMatrix, numberOfRows, numberOfC
 
             // Stop if destination reached
             if (destinationCell == neighbourCell) {
-                animateDijkstra(previousArray, visitedNodesInOrder, sourceCell, destinationCell, grid);
+                animateDijkstra(previousArray, visitedNodesInOrder, sourceCell, destinationCell, animationButtonGroup);
                 return;
             }
         }
     }
 
-    animateDijkstra(previousArray, visitedNodesInOrder, sourceCell, destinationCell, grid);
+    animateDijkstra(previousArray, visitedNodesInOrder, sourceCell, destinationCell, animationButtonGroup);
 }
 
 function getLocationOfCellState(cellModelMatrix, numberOfRows, numberOfCols, cellstate) {
@@ -101,7 +107,7 @@ function getMinimumDistanceCell(cellModelMatrix, distanceMatrix, shortestPathSet
     return shortestDistanceCell;
 }
 
-function animateDijkstra(previousArray, visitedNodesInOrder, sourceCell, destinationCell, grid) {
+function animateDijkstra(previousArray, visitedNodesInOrder, sourceCell, destinationCell, animationButtonGroup) {
     let delay = 2;
     new Promise((resolve, reject) => {
         for (let i = 0; i < visitedNodesInOrder.length; i++) {
@@ -123,7 +129,7 @@ function animateDijkstra(previousArray, visitedNodesInOrder, sourceCell, destina
         return totalPriorDelay;
     }).then((totalPriorDelay) => {
         setTimeout(() => {
-            grid.endAnimation();
+            animationButtonGroup.endAnimation();
         }, totalPriorDelay);
     });
 }

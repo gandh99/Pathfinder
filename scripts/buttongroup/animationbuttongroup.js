@@ -1,4 +1,4 @@
-import { grid } from "../index.js";
+import { dijkstra } from "../algorithms/dijkstra.js";
 
 export default class AnimationButtonGroup {
     constructor(grid, utilityBar) {
@@ -15,12 +15,16 @@ export default class AnimationButtonGroup {
     initFunctionality() {
         this.playButton.addEventListener("click", () => {
             this.utilityBar.sendAnimationPlayEvent();
-            this.grid.startAnimation(this);
+            this.startAnimation();
         });
     }
 
-    animationFinished() {
-        this.utilityBar.sendAnimationPlayEvent();  
+    startAnimation() {
+        dijkstra(this.grid, this);
+    }
+
+    endAnimation() {
+        this.utilityBar.sendAnimationPlayEvent();
     }
 }
 

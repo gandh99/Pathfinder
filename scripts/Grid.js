@@ -1,7 +1,6 @@
 import CellModel from "./cellmodel.js";
 import CellView from "./cellview.js";
 import Graph from "./graph.js";
-import { dijkstra } from "./algorithms/dijkstra.js";
 
 export default class Grid {
     constructor(numberOfRows, numberOfCols) {
@@ -46,21 +45,23 @@ export default class Grid {
         this.adjacencyList = graph.getGraph;
     }
 
-    startAnimation(animationButtonGroup) {
-        this.animationButtonGroup = animationButtonGroup;
-        this.initGraph();
-        dijkstra(this.adjacencyList, this.cellModelMatrix, this.numberOfRows, this.numberOfCols, this);
-    }
-
-    endAnimation() {
-        this.animationButtonGroup.animationFinished();
-    }
-
     get getCellModelMatrix() {
         return this.cellModelMatrix;
     }
 
     get getTableCellMatrix() {
         return this.tableCellMatrix;
+    }
+
+    get getAdjacencyList() {
+        return this.adjacencyList;
+    }
+
+    get getNumberOfRows() {
+        return this.numberOfRows;
+    }
+
+    get getNumberOfCols() {
+        return this.numberOfCols;
     }
 }
