@@ -1,4 +1,4 @@
-import { dijkstra } from "../algorithms/dijkstra.js";
+import Dijkstra from "../algorithms/dijkstra.js";
 
 export default class AnimationButtonGroup {
     constructor(grid, utilityBar) {
@@ -20,7 +20,7 @@ export default class AnimationButtonGroup {
     }
 
     startAnimation() {
-        dijkstra(this.grid, this);
+        let dijkstra = new Dijkstra(this.grid, this);
     }
 
     endAnimation() {
