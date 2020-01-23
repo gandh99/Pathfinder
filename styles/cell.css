@@ -1,4 +1,5 @@
 .source-cell {
+    background-color: yellow;
     background-image: url("../images/source.png");
     background-size: contain;
     background-repeat: no-repeat;
@@ -6,6 +7,7 @@
 }
 
 .destination-cell {
+    background-color: yellow;
     background-image: url("../images/destination.png");
     background-size: contain;
     background-repeat: no-repeat;
