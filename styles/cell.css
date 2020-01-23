@@ -1,13 +1,23 @@
 .source-cell {
-    background-color: green;
+    background-image: url("../images/source.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .destination-cell {
-    background-color: red;
+    background-image: url("../images/destination.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .obstacle-cell {
     background-color: gray;
+    background-image: url("../images/obstacle.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .visited-cell {
