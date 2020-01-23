@@ -1,11 +1,11 @@
 import CellState from "../cellstate.js";
 
-export function dijkstra(adjacencyList, grid, numberOfRows, numberOfCols) {
+export function dijkstra(adjacencyList, cellModelMatrix, numberOfRows, numberOfCols, grid) {
     let totalNumberOfCells = numberOfRows * numberOfCols;
-    let sourceCell = getLocationOfCellState(grid, numberOfRows, numberOfCols, CellState.SOURCE);
-    let destinationCell = getLocationOfCellState(grid, numberOfRows, numberOfCols, CellState.DESTINATION);
-    let distanceMatrix = initDistanceMatrix(grid, numberOfRows, numberOfCols);
-    let shortestPathSet = initShortestPathSet(grid, numberOfRows, numberOfCols);
+    let sourceCell = getLocationOfCellState(cellModelMatrix, numberOfRows, numberOfCols, CellState.SOURCE);
+    let destinationCell = getLocationOfCellState(cellModelMatrix, numberOfRows, numberOfCols, CellState.DESTINATION);
+    let distanceMatrix = initDistanceMatrix(cellModelMatrix, numberOfRows, numberOfCols);
+    let shortestPathSet = initShortestPathSet(cellModelMatrix, numberOfRows, numberOfCols);
     let previousArray = {};
     let visitedNodesInOrder = []; //test
 
@@ -13,9 +13,9 @@ export function dijkstra(adjacencyList, grid, numberOfRows, numberOfCols) {
     distanceMatrix[sourceCell.getX][sourceCell.getY] = 0;
 
     for (let u = 0; u < totalNumberOfCells; u++) {
-        let minDistanceCell = getMinimumDistanceCell(grid, distanceMatrix, shortestPathSet, numberOfRows, numberOfCols);
-        if (minDistanceCell == null) { 
-            continue; 
+        let minDistanceCell = getMinimumDistanceCell(cellModelMatrix, distanceMatrix, shortestPathSet, numberOfRows, numberOfCols);
+        if (minDistanceCell == null) {
+            continue;
         }
         shortestPathSet[minDistanceCell.getX][minDistanceCell.getY] = true;
 
@@ -37,26 +37,26 @@ export function dijkstra(adjacencyList, grid, numberOfRows, numberOfCols) {
 
             // Stop if destination reached
             if (destinationCell == neighbourCell) {
-                animateDijkstra(previousArray, visitedNodesInOrder, sourceCell, destinationCell);
+                animateDijkstra(previousArray, visitedNodesInOrder, sourceCell, destinationCell, grid);
                 return;
             }
         }
     }
 
-    animateDijkstra(previousArray, visitedNodesInOrder, sourceCell, destinationCell);
+    animateDijkstra(previousArray, visitedNodesInOrder, sourceCell, destinationCell, grid);
 }
 
-function getLocationOfCellState(grid, numberOfRows, numberOfCols, cellstate) {
+function getLocationOfCellState(cellModelMatrix, numberOfRows, numberOfCols, cellstate) {
     for (let i = 0; i < numberOfRows; i++) {
         for (let j = 0; j < numberOfCols; j++) {
-            if (grid[i][j].getCellState === cellstate) {
-                return grid[i][j];
+            if (cellModelMatrix[i][j].getCellState === cellstate) {
+                return cellModelMatrix[i][j];
             }
         }
     }
 }
 
-function initDistanceMatrix(grid, numberOfRows, numberOfCols) {
+function initDistanceMatrix(cellModelMatrix, numberOfRows, numberOfCols) {
     let distanceMatrix = new Array(numberOfRows);
 
     for (let i = 0; i < numberOfRows; i++) {
@@ -70,7 +70,7 @@ function initDistanceMatrix(grid, numberOfRows, numberOfCols) {
     return distanceMatrix;
 }
 
-function initShortestPathSet(grid, numberOfRows, numberOfCols) {
+function initShortestPathSet(cellModelMatrix, numberOfRows, numberOfCols) {
     let shortestPathSet = new Array(numberOfRows);
 
     for (let i = 0; i < numberOfRows; i++) {
@@ -85,7 +85,7 @@ function initShortestPathSet(grid, numberOfRows, numberOfCols) {
 }
 
 /* Returns the CellModel whose corresponding value in the distanceMatrix is the smallest */
-function getMinimumDistanceCell(grid, distanceMatrix, shortestPathSet, numberOfRows, numberOfCols) {
+function getMinimumDistanceCell(cellModelMatrix, distanceMatrix, shortestPathSet, numberOfRows, numberOfCols) {
     let shortestDistance = Infinity;
     let shortestDistanceCell;
 
@@ -93,7 +93,7 @@ function getMinimumDistanceCell(grid, distanceMatrix, shortestPathSet, numberOfR
         for (let j = 0; j < numberOfCols; j++) {
             if (!shortestPathSet[i][j] && distanceMatrix[i][j] < shortestDistance) {
                 shortestDistance = distanceMatrix[i][j];
-                shortestDistanceCell = grid[i][j];
+                shortestDistanceCell = cellModelMatrix[i][j];
             }
         }
     }
@@ -101,7 +101,7 @@ function getMinimumDistanceCell(grid, distanceMatrix, shortestPathSet, numberOfR
     return shortestDistanceCell;
 }
 
-function animateDijkstra(previousArray, visitedNodesInOrder, sourceCell, destinationCell) {
+function animateDijkstra(previousArray, visitedNodesInOrder, sourceCell, destinationCell, grid) {
     let delay = 2;
     new Promise((resolve, reject) => {
         for (let i = 0; i < visitedNodesInOrder.length; i++) {
@@ -119,6 +119,11 @@ function animateDijkstra(previousArray, visitedNodesInOrder, sourceCell, destina
                 currentCell.updateCellState(CellState.SHORTEST_PATH);
                 currentCell = previousArray[currentCell.getKey];
             }
+        }, totalPriorDelay);
+        return totalPriorDelay;
+    }).then((totalPriorDelay) => {
+        setTimeout(() => {
+            grid.endAnimation();
         }, totalPriorDelay);
     });
 }

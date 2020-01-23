@@ -46,9 +46,14 @@ export default class Grid {
         this.adjacencyList = graph.getGraph;
     }
 
-    startAnimation() {
+    startAnimation(animationButtonGroup) {
+        this.animationButtonGroup = animationButtonGroup;
         this.initGraph();
-        dijkstra(this.adjacencyList, this.cellModelMatrix, this.numberOfRows, this.numberOfCols);
+        dijkstra(this.adjacencyList, this.cellModelMatrix, this.numberOfRows, this.numberOfCols, this);
+    }
+
+    endAnimation() {
+        this.animationButtonGroup.animationFinished();
     }
 
     get getCellModelMatrix() {

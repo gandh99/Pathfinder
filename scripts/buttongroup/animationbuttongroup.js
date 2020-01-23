@@ -15,9 +15,12 @@ export default class AnimationButtonGroup {
     initFunctionality() {
         this.playButton.addEventListener("click", () => {
             this.utilityBar.sendAnimationPlayEvent();
-            this.grid.startAnimation();
-            this.utilityBar.sendAnimationPlayEvent();
+            this.grid.startAnimation(this);
         });
+    }
+
+    animationFinished() {
+        this.utilityBar.sendAnimationPlayEvent();  
     }
 }
 
