@@ -9,6 +9,7 @@ export default class CellStateButtonGroup {
         this.ACTIVE_BUTTON_CLASS_NAME = "active-button";
         this.isAnimationPlaying = false;
         this.grid = grid;
+        this.activeController;
         this.getCellStateButtons();
         this.getControllers();
         this.initFunctionality();
@@ -49,6 +50,7 @@ export default class CellStateButtonGroup {
                 if (!this.isAnimationPlaying) {
                     this.activateCellStateButton(button);
                     this.cellStateButtonControllers.map(otherController => otherController.deactivate());
+                    this.activeController = controller;
                     controller.activate();
                 }
             });
@@ -58,7 +60,7 @@ export default class CellStateButtonGroup {
     toggleAnimationPlaying() {
         this.isAnimationPlaying = !this.isAnimationPlaying;
         this.cellStateButtonControllers.map(controller => {
-            this.isAnimationPlaying ? controller.deactivate() : controller.activate();
+            this.isAnimationPlaying ? controller.deactivate() : this.activeController.activate();
         });
     }
 
