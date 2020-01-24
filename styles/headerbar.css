@@ -45,3 +45,14 @@
     height: 21px;
     margin-right: 0.5rem;
 }
+
+#help-button::before {
+    content: "";
+    display: block;
+    float: left;
+    background-image: url("../images/help.png");
+    background-size: contain;
+    width: 1.3rem;
+    height: 21px;
+    margin-right: 0.5rem;
+}
