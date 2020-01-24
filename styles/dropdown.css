@@ -25,6 +25,9 @@
     display: block;
 }
 
-.dropdown-active-item {
-    background-color: #ddd;
+.dropdown-active-item::after {
+    content: "aaa";
+    color: transparent;
+    background-image: url("../images/tick.png");
+    background-size: cover;
 }
