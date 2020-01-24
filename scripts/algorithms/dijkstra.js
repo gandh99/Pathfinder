@@ -22,7 +22,7 @@ export default class Dijkstra {
         let distanceMatrix = this.initDistanceMatrix(numberOfRows, numberOfCols);
         let shortestPathSet = this.initShortestPathSet(numberOfRows, numberOfCols);
         let previousArray = {};
-        let visitedNodesInOrder = []; 
+        let visitedNodesInOrder = [];
 
         // Initialise distance from source
         distanceMatrix[sourceCell.getX][sourceCell.getY] = 0;
@@ -117,8 +117,9 @@ export default class Dijkstra {
     }
 
     animateDijkstra(previousArray, visitedNodesInOrder, sourceCell, destinationCell, animationButtonGroup) {
-        let delay = 2;
         new Promise((resolve, reject) => {
+            // Visualise the visited nodes in order
+            let delay = 2;
             for (let i = 0; i < visitedNodesInOrder.length; i++) {
                 setTimeout(() => {
                     if (visitedNodesInOrder[i] != sourceCell && visitedNodesInOrder[i] != destinationCell) {
@@ -128,12 +129,15 @@ export default class Dijkstra {
             }
             resolve(visitedNodesInOrder.length * delay);
         }).then((totalPriorDelay) => {
+            // Visualise the shortest path
             setTimeout(() => {
                 let currentCell = previousArray[destinationCell.getKey];
-                while (currentCell != sourceCell) {
+                let delay = 50;
+                var interval = setInterval(() => {
                     currentCell.updateCellState(CellState.SHORTEST_PATH);
                     currentCell = previousArray[currentCell.getKey];
-                }
+                    if (currentCell == sourceCell) clearInterval(interval);
+                }, delay);
             }, totalPriorDelay);
             return totalPriorDelay;
         }).then((totalPriorDelay) => {
