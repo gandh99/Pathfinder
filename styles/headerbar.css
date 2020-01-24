@@ -1,3 +1,5 @@
+@import url("dropdown.css");
+
 #header-bar {
     display: flex;
     flex-direction: row;

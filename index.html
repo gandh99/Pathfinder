@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,20 @@
     <link rel="stylesheet" href="styles/index.css">
     <title>Pathfinder</title>
 </head>
+
 <body>
     <div id="header-bar">
         <div class="header-item" id="logo">PATHFINDER</div>
-        <div class="header-item">Algorithm</div>
+        <div class="dropdown-menu">
+            <div class="header-item">Algorithm <i class="fa fa-caret-down"></i>
+            </div>
+            <div class="dropdown-content">
+                <div class="dropdown-item">Dijkstra's</div>
+                <div class="dropdown-item">A*</div>
+                <div class="dropdown-item">Breadth-First</div>
+                <div class="dropdown-item">Depth-First</div>
+            </div>
+        </div>
         <div class="header-item">Theme</div>
         <div class="header-item" id="play-button">Play Animation</div>
         <div class="header-item" id="reset-button">Reset Board</div>
@@ -28,4 +39,5 @@
     <script src="scripts/index.js" type="module"></script>
     <script src="scripts/utilitybar.js" type="module"></script>
 </body>
+
 </html>
