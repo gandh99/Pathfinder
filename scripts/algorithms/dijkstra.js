@@ -11,6 +11,11 @@ export default class Dijkstra {
         let totalNumberOfCells = numberOfRows * numberOfCols;
         let sourceCell = this.getLocationOfCellState(cellModelMatrix, numberOfRows, numberOfCols, CellState.SOURCE);
         let destinationCell = this.getLocationOfCellState(cellModelMatrix, numberOfRows, numberOfCols, CellState.DESTINATION);
+        if (sourceCell == null || destinationCell == null) {
+            animationButtonGroup.endAnimation();
+            return;
+        }
+
         let distanceMatrix = this.initDistanceMatrix(numberOfRows, numberOfCols);
         let shortestPathSet = this.initShortestPathSet(numberOfRows, numberOfCols);
         let previousArray = {};
