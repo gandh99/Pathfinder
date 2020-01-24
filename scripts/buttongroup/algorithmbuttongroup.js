@@ -5,14 +5,9 @@ export default class AlgorithmButtonGroup {
         this.dropdownActiveItem = "dropdown-active-item";
         this.selectedAlgorithm;
         this.getAlgorithmButtons();
+        this.initButtonToAlgorithmMap();
         this.setDefaultAlgorithm();
-        for (let i = 0; i < this.algorithmChoices.length; i++) {
-            this.algorithmChoices[i].addEventListener("click", () => {
-                this.resetActiveItems(this.algorithmChoices);
-                this.algorithmChoices[i].classList.add(this.dropdownActiveItem);
-                this.selectedAlgorithm = this.buttonToAlgorithmMap.get(this.algorithmChoices[i]);
-            });
-        }
+        this.initButtonFunctionality();
     }
 
     getAlgorithmButtons() {
@@ -26,6 +21,9 @@ export default class AlgorithmButtonGroup {
             this.breadthFirst,
             this.depthFirst
         ]
+    }
+
+    initButtonToAlgorithmMap() {
         this.buttonToAlgorithmMap = new Map([
             [this.dijkstra, new Dijkstra()],
             [this.astar, new Dijkstra()],
@@ -38,6 +36,16 @@ export default class AlgorithmButtonGroup {
         // Set Dijkstra's as default
         this.dijkstra.classList.add(this.dropdownActiveItem);
         this.selectedAlgorithm = this.buttonToAlgorithmMap.get(this.dijkstra);
+    }
+
+    initButtonFunctionality() {
+        for (let i = 0; i < this.algorithmChoices.length; i++) {
+            this.algorithmChoices[i].addEventListener("click", () => {
+                this.resetActiveItems(this.algorithmChoices);
+                this.algorithmChoices[i].classList.add(this.dropdownActiveItem);
+                this.selectedAlgorithm = this.buttonToAlgorithmMap.get(this.algorithmChoices[i]);
+            });
+        }
     }
 
     resetActiveItems(algorithmChoices) {
