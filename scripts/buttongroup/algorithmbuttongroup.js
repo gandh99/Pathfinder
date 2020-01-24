@@ -1,4 +1,5 @@
 import Dijkstra from "../algorithms/dijkstra.js";
+import DepthFirst from "../algorithms/depthfirst.js";
 
 export default class AlgorithmButtonGroup {
     constructor() {
@@ -28,7 +29,7 @@ export default class AlgorithmButtonGroup {
             [this.dijkstra, new Dijkstra()],
             [this.astar, new Dijkstra()],
             [this.breadthFirst, new Dijkstra()],
-            [this.depthFirst, new Dijkstra()]
+            [this.depthFirst, new DepthFirst()]
         ]);
     }
 

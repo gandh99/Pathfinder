@@ -22,7 +22,7 @@ export default class Dijkstra {
         let distanceMatrix = this.initDistanceMatrix(numberOfRows, numberOfCols);
         let shortestPathSet = this.initShortestPathSet(numberOfRows, numberOfCols);
         let previousArray = {};
-        let visitedNodesInOrder = []; //test
+        let visitedNodesInOrder = []; 
 
         // Initialise distance from source
         distanceMatrix[sourceCell.getX][sourceCell.getY] = 0;
