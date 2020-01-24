@@ -2,9 +2,10 @@ import Dijkstra from "../algorithms/dijkstra.js";
 import CellState from "../cellstate.js";
 
 export default class AnimationButtonGroup {
-    constructor(grid, utilityBar) {
+    constructor(grid, utilityBar, algorithmButtonGroup) {
         this.utilityBar = utilityBar;
         this.grid = grid;
+        this.algorithmButtonGroup = algorithmButtonGroup;
         this.getAnimationButtons();
         this.initFunctionality();
     }
@@ -37,7 +38,8 @@ export default class AnimationButtonGroup {
     }
 
     startAnimation() {
-        let dijkstra = new Dijkstra(this.grid, this);
+        let algorithm = this.algorithmButtonGroup.getSelectedAlgorithm();
+        algorithm.run(this.grid, this);
     }
 
     endAnimation() {

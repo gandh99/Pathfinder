@@ -1,7 +1,10 @@
 import CellState from "../cellstate.js";
 
 export default class Dijkstra {
-    constructor(grid, animationButtonGroup) {
+    constructor() {
+    }
+
+    run(grid, animationButtonGroup) {
         grid.initGraph();
         let adjacencyList = grid.getAdjacencyList;
         let cellModelMatrix = grid.getCellModelMatrix;
