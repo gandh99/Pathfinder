@@ -24,3 +24,7 @@
 .dropdown-menu:hover .dropdown-content {
     display: block;
 }
+
+.dropdown-active-item {
+    background-color: #ddd;
+}
