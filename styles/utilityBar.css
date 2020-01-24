@@ -9,11 +9,79 @@
 .utility-item {
     margin: 0 2rem;
     padding: 0.5rem 1rem;
-    border: 2px solid black;
+    vertical-align: middle;
     cursor: pointer;
 }
 
+.utility-item:hover {
+}
+
+#source-button::before {
+    content: "";
+    display: block;
+    float: left;
+    background-image: url("../images/source.png");
+    background-size: contain;
+    width: 1.3rem;
+    height: 20px;
+    margin-right: 0.5rem;
+}
+
+#destination-button::before {
+    content: "";
+    display: block;
+    float: left;
+    background-image: url("../images/destination.png");
+    background-size: contain;
+    width: 0.9rem;
+    height: 20px;
+    margin-right: 0.5rem;
+}
+
+#obstacle-button::before {
+    content: "";
+    display: block;
+    float: left;
+    background-image: url("../images/obstacle.png");
+    background-size: contain;
+    width: 1.3rem;
+    height: 20px;
+    margin-right: 0.5rem;
+}
+
+#erase-button::before {
+    content: "";
+    display: block;
+    float: left;
+    background-image: url("../images/erase.png");
+    background-size: contain;
+    width: 1.3rem;
+    height: 21px;
+    margin-right: 0.5rem;
+}
+
+#play-button::before {
+    content: "";
+    display: block;
+    float: left;
+    background-image: url("../images/play.png");
+    background-size: contain;
+    width: 1.3rem;
+    height: 21px;
+    margin-right: 0.5rem;
+}
+
+#reset-button::before {
+    content: "";
+    display: block;
+    float: left;
+    background-image: url("../images/reset.png");
+    background-size: contain;
+    width: 1.3rem;
+    height: 21px;
+    margin-right: 0.5rem;
+}
+
 .active-button {
-    border: 2px solid red;
-    color: red;
+    font-weight: bold;
 }
