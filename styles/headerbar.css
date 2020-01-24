@@ -3,15 +3,45 @@
     flex-direction: row;
     background-color: #2f4152;
     color: white;
-    padding: 1rem;
 }
 
 #logo {
+    color: #7db0e0;
     font-weight: bold;
     margin-right: 2rem;
 }
 
+#logo:hover {
+    background-color: #2f4152;
+}
+
 .header-item {
-    margin: 0 2rem;
+    padding: 1rem 2rem;
     cursor: pointer;
+}
+
+.header-item:hover {
+    background-color: #151e25;
+}
+
+#play-button::before {
+    content: "";
+    display: block;
+    float: left;
+    background-image: url("../images/play.png");
+    background-size: contain;
+    width: 1.3rem;
+    height: 21px;
+    margin-right: 0.5rem;
+}
+
+#reset-button::before {
+    content: "";
+    display: block;
+    float: left;
+    background-image: url("../images/reset.png");
+    background-size: contain;
+    width: 1.3rem;
+    height: 21px;
+    margin-right: 0.5rem;
 }
