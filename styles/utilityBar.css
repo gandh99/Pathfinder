@@ -10,6 +10,7 @@
     margin: 0 2rem;
     padding: 0.5rem 1rem;
     vertical-align: middle;
+    color: gray;
     cursor: pointer;
 }
 
@@ -83,5 +84,6 @@
 }
 
 .active-button {
-    font-weight: bold;
+    color: black;
+    font-weight: bolder;
 }
