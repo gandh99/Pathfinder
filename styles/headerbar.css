@@ -1,0 +1,17 @@
+#header-bar {
+    display: flex;
+    flex-direction: row;
+    background-color: #2f4152;
+    color: white;
+    padding: 1rem;
+}
+
+#logo {
+    font-weight: bold;
+    margin-right: 2rem;
+}
+
+.header-item {
+    margin: 0 2rem;
+    cursor: pointer;
+}
