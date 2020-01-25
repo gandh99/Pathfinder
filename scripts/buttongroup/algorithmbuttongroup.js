@@ -1,4 +1,6 @@
 import Dijkstra from "../algorithms/dijkstra.js";
+import AStar from "../algorithms/astar.js";
+import BreadthFirst from "../algorithms/breadthfirst.js";
 import DepthFirst from "../algorithms/depthfirst.js";
 
 export default class AlgorithmButtonGroup {
@@ -27,8 +29,8 @@ export default class AlgorithmButtonGroup {
     initButtonToAlgorithmMap() {
         this.buttonToAlgorithmMap = new Map([
             [this.dijkstra, new Dijkstra()],
-            [this.astar, new Dijkstra()],
-            [this.breadthFirst, new Dijkstra()],
+            [this.astar, new AStar()],
+            [this.breadthFirst, new BreadthFirst()],
             [this.depthFirst, new DepthFirst()]
         ]);
     }

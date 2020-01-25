@@ -1,4 +1,5 @@
 import CellState from "../cellstate.js";
+import { animate } from "../algorithmanimator.js";
 
 export default class DepthFirst {
     constructor() {
@@ -23,9 +24,10 @@ export default class DepthFirst {
         this.visitedCellMatrix = this.initVisitedCellMatrix(numberOfRows, numberOfCols);
 
         this.visitedNodesInOrder = [];
+        this.shortestPathArray = [];
         this.destinationReached = false;
         this.depthFirst(this.sourceCell);
-        this.animateDepthFirst(this.visitedNodesInOrder, this.sourceCell, this.destinationCell, animationButtonGroup);
+        animate(this.visitedNodesInOrder, this.shortestPathArray, this.sourceCell, this.destinationCell, animationButtonGroup);
     }
 
     initVisitedCellMatrix(numberOfRows, numberOfCols) {
@@ -65,42 +67,18 @@ export default class DepthFirst {
         this.visitedNodesInOrder.push(currentCell);
         for (let v = 0; v < this.adjacencyList[currentCell.getKey].length; v++) {
             let neighbourCell = this.adjacencyList[currentCell.getKey][v];
-            if (!this.visitedCellMatrix[neighbourCell.getX][neighbourCell.getY]) {
+            if (!this.destinationReached && !this.visitedCellMatrix[neighbourCell.getX][neighbourCell.getY]) {
+                if (neighbourCell != this.destinationCell) {
+                    // We don't want the destination cell to be part of the shortest path array
+                    this.shortestPathArray.push(neighbourCell);
+                }
                 this.visitedCellMatrix[neighbourCell.getX][neighbourCell.getY] = true;
                 this.depthFirst(neighbourCell);
             }
         }
-    }
 
-    animateDepthFirst(visitedNodesInOrder, sourceCell, destinationCell, animationButtonGroup) {
-        let delay = 2;
-        new Promise((resolve, reject) => {
-            // Visualise the visited nodes in order
-            for (let i = 0; i < visitedNodesInOrder.length; i++) {
-                setTimeout(() => {
-                    if (visitedNodesInOrder[i] != sourceCell && visitedNodesInOrder[i] != destinationCell) {
-                        visitedNodesInOrder[i].updateCellState(CellState.VISITED);
-                    }
-                }, i * delay);
-            }
-            resolve(visitedNodesInOrder.length * delay);
-        }).then((totalPriorDelay) => {
-            // Visualise the shortest path
-            setTimeout(() => {
-                let delay = 50;
-                let i = 1;
-                var interval = setInterval(() => {
-                    let currentCell = visitedNodesInOrder[i++];
-                    currentCell.updateCellState(CellState.SHORTEST_PATH);
-                    if (i == visitedNodesInOrder.length) clearInterval(interval);
-                }, delay);
-            }, totalPriorDelay);
-            return totalPriorDelay;
-        }).then((totalPriorDelay) => {
-            setTimeout(() => {
-                animationButtonGroup.endAnimation();
-            }, totalPriorDelay);
-        });
-
+        if (!this.destinationReached) {
+            this.shortestPathArray.pop();
+        }
     }
 }

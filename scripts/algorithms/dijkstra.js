@@ -1,4 +1,5 @@
 import CellState from "../cellstate.js";
+import { animate } from "../algorithmanimator.js";
 
 export default class Dijkstra {
     constructor() {
@@ -117,45 +118,25 @@ export default class Dijkstra {
     }
 
     animateDijkstra(previousArray, visitedNodesInOrder, sourceCell, destinationCell, animationButtonGroup) {
-        new Promise((resolve, reject) => {
-            // Visualise the visited nodes in order
-            let delay = 2;
-            for (let i = 0; i < visitedNodesInOrder.length; i++) {
-                setTimeout(() => {
-                    if (visitedNodesInOrder[i] != sourceCell && visitedNodesInOrder[i] != destinationCell) {
-                        visitedNodesInOrder[i].updateCellState(CellState.VISITED);
-                    }
-                }, i * delay);
-            }
-            resolve(visitedNodesInOrder.length * delay);
-        }).then((totalPriorDelay) => {
-            // Visualise the shortest path
-            let shortestPathStack = this.getShortestPathStack(previousArray, sourceCell, destinationCell);
-            setTimeout(() => {
-                let delay = 50;
-                var interval = setInterval(() => {
-                    let currentCell = shortestPathStack.pop();
-                    currentCell.updateCellState(CellState.SHORTEST_PATH);
-                    if (shortestPathStack.length == 0) clearInterval(interval);
-                }, delay);
-            }, totalPriorDelay);
-            return totalPriorDelay;
-        }).then((totalPriorDelay) => {
-            setTimeout(() => {
-                animationButtonGroup.endAnimation();
-            }, totalPriorDelay);
-        });
+        let shortestPathArray = this.getShortestPathArray(previousArray, sourceCell, destinationCell);
+        animate(visitedNodesInOrder, shortestPathArray, sourceCell, destinationCell, animationButtonGroup);
     }
 
-    getShortestPathStack(previousArray, sourceCell, destinationCell) {
+    getShortestPathArray(previousArray, sourceCell, destinationCell) {
+        // First convert to stack, where the top is the earlier cells in the path
         let stack = [];
         let currentCell = previousArray[destinationCell.getKey];
-
         while (currentCell != sourceCell) {
             stack.push(currentCell);
             currentCell = previousArray[currentCell.getKey];
         }
 
-        return stack;
+        // Then convert to an array, where smaller indices are the earleir cells in the path
+        let shortestPathArray = [];
+        while (stack.length != 0) {
+            shortestPathArray.push(stack.pop());
+        }
+
+        return shortestPathArray;
     }
 }
