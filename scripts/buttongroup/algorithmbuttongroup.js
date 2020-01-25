@@ -1,7 +1,7 @@
 import Dijkstra from "../algorithms/dijkstra.js";
 import AStar from "../algorithms/astar.js";
-import BreadthFirst from "../algorithms/breadthfirst.js";
-import DepthFirst from "../algorithms/depthfirst.js";
+import BreadthFirst from "../algorithms/breadthfirstsearch.js";
+import DepthFirst from "../algorithms/depthfirstsearch.js";
 
 export default class AlgorithmButtonGroup {
     constructor() {

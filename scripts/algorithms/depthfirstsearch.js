@@ -1,7 +1,7 @@
 import CellState from "../cellstate.js";
 import { animate } from "../algorithmanimator.js";
 
-export default class DepthFirst {
+export default class DepthFirstSearch {
     constructor() {
 
     }
@@ -25,7 +25,7 @@ export default class DepthFirst {
         this.visitedNodesInOrder = [];
         this.shortestPathArray = [];
         this.destinationReached = false;
-        this.depthFirst(this.sourceCell);
+        this.depthFirstSearch(this.sourceCell);
         animate(this.visitedNodesInOrder, this.shortestPathArray, this.sourceCell, this.destinationCell, animationButtonGroup);
     }
 
@@ -57,7 +57,7 @@ export default class DepthFirst {
         }
     }
 
-    depthFirst(currentCell) {
+    depthFirstSearch(currentCell) {
         if (this.destinationReached || currentCell == this.destinationCell) {
             this.destinationReached = true;
             return;
@@ -72,7 +72,7 @@ export default class DepthFirst {
                     this.shortestPathArray.push(neighbourCell);
                 }
                 this.visitedCellMatrix[neighbourCell.getX][neighbourCell.getY] = true;
-                this.depthFirst(neighbourCell);
+                this.depthFirstSearch(neighbourCell);
             }
         }
 
