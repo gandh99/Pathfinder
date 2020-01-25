@@ -7,12 +7,14 @@ export default class DepthFirstSearch {
     }
 
     run(grid, animationButtonGroup) {
+        // Covnert grid into graph data
         grid.initGraph();
         this.adjacencyList = grid.getAdjacencyList;
         this.cellModelMatrix = grid.getCellModelMatrix;
         this.numberOfRows = grid.getNumberOfRows;
         this.numberOfCols = grid.getNumberOfCols;
 
+        // Get source and destination cells
         this.sourceCell = this.getLocationOfCellState(this.cellModelMatrix, this.numberOfRows, this.numberOfCols, CellState.SOURCE);
         this.destinationCell = this.getLocationOfCellState(this.cellModelMatrix, this.numberOfRows, this.numberOfCols, CellState.DESTINATION);
         if (this.sourceCell == null || this.destinationCell == null) {
@@ -22,10 +24,15 @@ export default class DepthFirstSearch {
 
         this.visitedCellMatrix = this.initVisitedCellMatrix(this.numberOfRows, this.numberOfCols);
 
+        // Data for animation
         this.visitedNodesInOrder = [];
         this.shortestPathArray = [];
         this.destinationReached = false;
+
+        // Run the search
         this.depthFirstSearch(this.sourceCell);
+
+        // Animate
         animate(this.visitedNodesInOrder, this.shortestPathArray, this.sourceCell, this.destinationCell, animationButtonGroup);
     }
 

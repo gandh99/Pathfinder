@@ -6,12 +6,14 @@ export default class Dijkstra {
     }
 
     run(grid, animationButtonGroup) {
+        // Covnert grid into graph data
         grid.initGraph();
         let adjacencyList = grid.getAdjacencyList;
         let cellModelMatrix = grid.getCellModelMatrix;
         let numberOfRows = grid.getNumberOfRows;
         let numberOfCols = grid.getNumberOfCols;
 
+        // Get source and destination cells
         let totalNumberOfCells = numberOfRows * numberOfCols;
         let sourceCell = this.getLocationOfCellState(cellModelMatrix, numberOfRows, numberOfCols, CellState.SOURCE);
         let destinationCell = this.getLocationOfCellState(cellModelMatrix, numberOfRows, numberOfCols, CellState.DESTINATION);
@@ -20,6 +22,7 @@ export default class Dijkstra {
             return;
         }
 
+        // Data for animation
         let distanceMatrix = this.initDistanceMatrix(numberOfRows, numberOfCols);
         let shortestPathSet = this.initShortestPathSet(numberOfRows, numberOfCols);
         let previousArray = {};
