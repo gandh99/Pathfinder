@@ -130,13 +130,13 @@ export default class Dijkstra {
             resolve(visitedNodesInOrder.length * delay);
         }).then((totalPriorDelay) => {
             // Visualise the shortest path
+            let shortestPathStack = this.getShortestPathStack(previousArray, sourceCell, destinationCell);
             setTimeout(() => {
-                let currentCell = previousArray[destinationCell.getKey];
                 let delay = 50;
                 var interval = setInterval(() => {
+                    let currentCell = shortestPathStack.pop();
                     currentCell.updateCellState(CellState.SHORTEST_PATH);
-                    currentCell = previousArray[currentCell.getKey];
-                    if (currentCell == sourceCell) clearInterval(interval);
+                    if (shortestPathStack.length == 0) clearInterval(interval);
                 }, delay);
             }, totalPriorDelay);
             return totalPriorDelay;
@@ -145,5 +145,17 @@ export default class Dijkstra {
                 animationButtonGroup.endAnimation();
             }, totalPriorDelay);
         });
+    }
+
+    getShortestPathStack(previousArray, sourceCell, destinationCell) {
+        let stack = [];
+        let currentCell = previousArray[destinationCell.getKey];
+
+        while (currentCell != sourceCell) {
+            stack.push(currentCell);
+            currentCell = previousArray[currentCell.getKey];
+        }
+
+        return stack;
     }
 }

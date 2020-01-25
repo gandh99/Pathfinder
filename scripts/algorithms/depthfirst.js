@@ -11,7 +11,6 @@ export default class DepthFirst {
         let cellModelMatrix = grid.getCellModelMatrix;
         let numberOfRows = grid.getNumberOfRows;
         let numberOfCols = grid.getNumberOfCols;
-        this.initVisitedCellMatrix(numberOfRows, numberOfCols);
 
         let totalNumberOfCells = numberOfRows * numberOfCols;
         this.sourceCell = this.getLocationOfCellState(cellModelMatrix, numberOfRows, numberOfCols, CellState.SOURCE);
@@ -21,6 +20,8 @@ export default class DepthFirst {
             return;
         }
 
+        this.visitedCellMatrix = this.initVisitedCellMatrix(numberOfRows, numberOfCols);
+
         this.visitedNodesInOrder = [];
         this.destinationReached = false;
         this.depthFirst(this.sourceCell);
@@ -28,16 +29,21 @@ export default class DepthFirst {
     }
 
     initVisitedCellMatrix(numberOfRows, numberOfCols) {
-        this.visitedCellMatrix = new Array(numberOfRows);
+        let visitedCellMatrix = new Array(numberOfRows);
         for (let i = 0; i < numberOfCols; i++) {
-            this.visitedCellMatrix[i] = new Array(numberOfCols);
+            visitedCellMatrix[i] = new Array(numberOfCols);
         }
 
         for (let i = 0; i < numberOfRows; i++) {
             for (let j = 0; j < numberOfCols; j++) {
-                this.visitedCellMatrix[i][j] = false;
+                visitedCellMatrix[i][j] = false;
             }
         }
+
+        // Mark source cell as visited
+        visitedCellMatrix[this.sourceCell.getX][this.sourceCell.getY] = true;
+
+        return visitedCellMatrix;
     }
 
     getLocationOfCellState(cellModelMatrix, numberOfRows, numberOfCols, cellstate) {
@@ -55,7 +61,7 @@ export default class DepthFirst {
             this.destinationReached = true;
             return;
         }
-        
+
         this.visitedNodesInOrder.push(currentCell);
         for (let v = 0; v < this.adjacencyList[currentCell.getKey].length; v++) {
             let neighbourCell = this.adjacencyList[currentCell.getKey][v];
@@ -69,6 +75,7 @@ export default class DepthFirst {
     animateDepthFirst(visitedNodesInOrder, sourceCell, destinationCell, animationButtonGroup) {
         let delay = 2;
         new Promise((resolve, reject) => {
+            // Visualise the visited nodes in order
             for (let i = 0; i < visitedNodesInOrder.length; i++) {
                 setTimeout(() => {
                     if (visitedNodesInOrder[i] != sourceCell && visitedNodesInOrder[i] != destinationCell) {
@@ -78,13 +85,16 @@ export default class DepthFirst {
             }
             resolve(visitedNodesInOrder.length * delay);
         }).then((totalPriorDelay) => {
-            // setTimeout(() => {
-            //     let currentCell = previousArray[destinationCell.getKey];
-            //     while (currentCell != sourceCell) {
-            //         currentCell.updateCellState(CellState.SHORTEST_PATH);
-            //         currentCell = previousArray[currentCell.getKey];
-            //     }
-            // }, totalPriorDelay);
+            // Visualise the shortest path
+            setTimeout(() => {
+                let delay = 50;
+                let i = 1;
+                var interval = setInterval(() => {
+                    let currentCell = visitedNodesInOrder[i++];
+                    currentCell.updateCellState(CellState.SHORTEST_PATH);
+                    if (i == visitedNodesInOrder.length) clearInterval(interval);
+                }, delay);
+            }, totalPriorDelay);
             return totalPriorDelay;
         }).then((totalPriorDelay) => {
             setTimeout(() => {

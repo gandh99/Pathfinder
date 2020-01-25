@@ -1,5 +1,6 @@
 .source-cell {
     background-color: yellow;
+    transform: scale(1.0);
     background-image: url("../images/source.png");
     background-size: contain;
     background-repeat: no-repeat;
@@ -8,6 +9,7 @@
 
 .destination-cell {
     background-color: yellow;
+    transform: scale(1.0);
     background-image: url("../images/destination.png");
     background-size: contain;
     background-repeat: no-repeat;
@@ -17,11 +19,6 @@
 .obstacle-cell {
     background-color: #2f4152;
     transform: scale(1.0);
-    /* background-image: url("../images/obstacle.png"); */
-    /* background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center; */
-    /* border: solid 10px #2f4152; */
 }
 
 .visited-cell {
