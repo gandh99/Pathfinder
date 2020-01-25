@@ -28,6 +28,7 @@ export default class Dijkstra {
         // Initialise distance from source
         distanceMatrix[sourceCell.getX][sourceCell.getY] = 0;
 
+        // Perform Dijkstra's algorithm
         for (let u = 0; u < totalNumberOfCells; u++) {
             let minDistanceCell = this.getMinimumDistanceCell(cellModelMatrix, distanceMatrix, shortestPathSet, numberOfRows, numberOfCols);
             if (minDistanceCell == null) {

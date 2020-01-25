@@ -9,19 +9,18 @@ export default class DepthFirst {
     run(grid, animationButtonGroup) {
         grid.initGraph();
         this.adjacencyList = grid.getAdjacencyList;
-        let cellModelMatrix = grid.getCellModelMatrix;
-        let numberOfRows = grid.getNumberOfRows;
-        let numberOfCols = grid.getNumberOfCols;
+        this.cellModelMatrix = grid.getCellModelMatrix;
+        this.numberOfRows = grid.getNumberOfRows;
+        this.numberOfCols = grid.getNumberOfCols;
 
-        let totalNumberOfCells = numberOfRows * numberOfCols;
-        this.sourceCell = this.getLocationOfCellState(cellModelMatrix, numberOfRows, numberOfCols, CellState.SOURCE);
-        this.destinationCell = this.getLocationOfCellState(cellModelMatrix, numberOfRows, numberOfCols, CellState.DESTINATION);
+        this.sourceCell = this.getLocationOfCellState(this.cellModelMatrix, this.numberOfRows, this.numberOfCols, CellState.SOURCE);
+        this.destinationCell = this.getLocationOfCellState(this.cellModelMatrix, this.numberOfRows, this.numberOfCols, CellState.DESTINATION);
         if (this.sourceCell == null || this.destinationCell == null) {
             animationButtonGroup.endAnimation();
             return;
         }
 
-        this.visitedCellMatrix = this.initVisitedCellMatrix(numberOfRows, numberOfCols);
+        this.visitedCellMatrix = this.initVisitedCellMatrix(this.numberOfRows, this.numberOfCols);
 
         this.visitedNodesInOrder = [];
         this.shortestPathArray = [];
