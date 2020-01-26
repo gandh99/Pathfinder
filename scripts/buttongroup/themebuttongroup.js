@@ -1,6 +1,7 @@
 import NormalTheme from "../themebutton/normaltheme.js";
 import IslandTheme from "../themebutton/islandtheme.js";
 import GalaxyTheme from "../themebutton/galaxytheme.js";
+import PokemonTheme from "../themebutton/pokemontheme.js";
 
 export default class ThemeButtonGroup {
     constructor(grid) {
@@ -17,10 +18,12 @@ export default class ThemeButtonGroup {
         this.normalTheme = document.getElementById("normal-theme");
         this.galaxyTheme = document.getElementById("galaxy-theme");
         this.islandTheme = document.getElementById("island-theme");
+        this.pokemonTheme = document.getElementById("pokemon-theme");
         this.themeChoices = [
             this.normalTheme,
             this.galaxyTheme,
             this.islandTheme,
+            this.pokemonTheme
         ]
     }
 
@@ -29,6 +32,7 @@ export default class ThemeButtonGroup {
             [this.normalTheme, new NormalTheme()],
             [this.galaxyTheme, new GalaxyTheme()],
             [this.islandTheme, new IslandTheme()],
+            [this.pokemonTheme, new PokemonTheme()],
         ]);
     }
 

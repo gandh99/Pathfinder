@@ -1,0 +1,17 @@
+#grid-container {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+#grid-table {
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+#grid-table td {
+    border: 1px solid rgb(1, 100, 1);
+    background-color: green;
+    padding: 10px;
+    margin: 0;
+}
