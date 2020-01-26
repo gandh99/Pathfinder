@@ -104,15 +104,15 @@
 @keyframes obstacle {
     10% {
         transform: scale(1.2);
-        background-color: #2f4152;
+        background-color: #264890;
     }
     25% {
         transform: scale(1);
-        background-color: #2f4152;
+        background-color: #264890;
     }
     100% {
         transform: scale(1);
-        background-color: #2f4152;
+        background-color: #264890;
     }
 }
 

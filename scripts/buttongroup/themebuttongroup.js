@@ -1,5 +1,6 @@
 import NormalTheme from "../themebutton/normaltheme.js";
 import IslandTheme from "../themebutton/islandtheme.js";
+import GalaxyTheme from "../themebutton/galaxytheme.js";
 
 export default class ThemeButtonGroup {
     constructor(grid) {
@@ -16,21 +17,18 @@ export default class ThemeButtonGroup {
         this.normalTheme = document.getElementById("normal-theme");
         this.galaxyTheme = document.getElementById("galaxy-theme");
         this.islandTheme = document.getElementById("island-theme");
-        this.arcadeTheme = document.getElementById("arcade-theme");
         this.themeChoices = [
             this.normalTheme,
             this.galaxyTheme,
             this.islandTheme,
-            this.arcadeTheme
         ]
     }
 
     initButtonToThemeMap() {
         this.buttonToThemeMap = new Map([
             [this.normalTheme, new NormalTheme()],
-            // [this.galaxyTheme, new RecursiveDivision(this.grid)],
+            [this.galaxyTheme, new GalaxyTheme()],
             [this.islandTheme, new IslandTheme()],
-            // [this.arcadeTheme, new RecursiveDivision(this.grid)]
         ]);
     }
 
