@@ -31,6 +31,12 @@ export default class AnimationButtonGroup {
                     || cellModelMatrix[i][j].getCellState == CellState.DESTINATION
                     || cellModelMatrix[i][j].getCellState == CellState.OBSTACLE) {
                     continue;
+                } else if (cellModelMatrix[i][j].getCellState == CellState.SOURCE_VISITED) {
+                    cellModelMatrix[i][j].updateCellState(CellState.SOURCE); 
+                    continue;
+                } else if (cellModelMatrix[i][j].getCellState == CellState.DESTINATION_VISITED) {
+                    cellModelMatrix[i][j].updateCellState(CellState.DESTINATION); 
+                    continue;
                 }
                 cellModelMatrix[i][j].updateCellState(CellState.BLANK);
             }
