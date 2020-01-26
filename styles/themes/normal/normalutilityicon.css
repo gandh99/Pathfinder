@@ -1,0 +1,43 @@
+#source-button::before {
+    content: "";
+    display: block;
+    float: left;
+    background-image: url("../../../images/source.png");
+    background-size: contain;
+    width: 1.3rem;
+    height: 20px;
+    margin-right: 0.5rem;
+}
+
+#destination-button::before {
+    content: "";
+    display: block;
+    float: left;
+    background-image: url("../../../images/destination.png");
+    background-size: contain;
+    width: 0.9rem;
+    height: 20px;
+    margin-right: 0.5rem;
+}
+
+#obstacle-button::before {
+    content: "";
+    display: block;
+    float: left;
+    background-image: url("../../../images/obstacle.png");
+    background-size: contain;
+    width: 1.3rem;
+    height: 20px;
+    margin-right: 0.5rem;
+}
+
+#erase-button::before {
+    content: "";
+    display: block;
+    float: left;
+    background-image: url("../../../images/erase.png");
+    background-size: contain;
+    width: 1.3rem;
+    height: 21px;
+    margin-right: 0.5rem;
+}

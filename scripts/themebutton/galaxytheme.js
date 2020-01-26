@@ -4,6 +4,7 @@ export default class GalaxyTheme extends ThemeModifier {
     constructor() {
         let cellStyle = "styles/themes/galaxy/galaxycell.css";
         let gridStyle = "styles/themes/galaxy/galaxygrid.css";
-        super(cellStyle, gridStyle);
+        let utilityIconStyle = "styles/themes/galaxy/galaxyutilityicon.css";
+        super(cellStyle, gridStyle, utilityIconStyle);
     }
 }
