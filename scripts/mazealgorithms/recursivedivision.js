@@ -39,13 +39,11 @@ export default class RecursiveDivision {
     }
 
     recursiveDivison(topRow, bottomRow, leftCol, rightCol) {
-        // Check for base case
-        if (bottomRow - topRow < 2 || rightCol - leftCol < 2) {
-            return;
-        }
+        let canDrawHorizontalWall = (bottomRow - topRow < 2) ? false : true;
+        let canDrawVerticalWall = (rightCol - leftCol < 2) ? false : true;
 
         // Pick and draw a wall
-        if (Math.random() < 0.4) {
+        if (canDrawHorizontalWall && Math.random() < 0.4) {
             // Draw a horizontal wall
             let row = this.getRandomInt(topRow + 1, bottomRow - 1);
             this.drawWall(row, row, leftCol, rightCol);
@@ -53,7 +51,7 @@ export default class RecursiveDivision {
             // Recursion
             this.recursiveDivison(topRow, row - 1, leftCol, rightCol);
             this.recursiveDivison(row + 1, bottomRow, leftCol, rightCol);
-        } else {
+        } else if (canDrawVerticalWall) {
             // Draw a vertical wall
             let col = this.getRandomInt(leftCol + 1, rightCol - 1);
             this.drawWall(topRow, bottomRow, col, col);
