@@ -15,10 +15,20 @@ export function animate(visitedNodesInOrder, shortestPathArray, sourceCell, dest
     }).then((totalPriorDelay) => {
         // Visualise the shortest path
         setTimeout(() => {
+            // Animation parameters
             let delay = 50;
             let i = 0;
+
+            // First mark the source cell
+            sourceCell.updateCellState(CellState.SOURCE_VISITED);
+
+            // Mark the shortest path
             var interval = setInterval(() => {
-                if (!shortestPathArray[i + 1]) clearInterval(interval);
+                if (!shortestPathArray[i + 1]) {
+                    // At the end of the animation, mark the destination cell
+                    destinationCell.updateCellState(CellState.DESTINATION_VISITED);
+                    clearInterval(interval);
+                }
                 let currentCell = shortestPathArray[i++];
                 currentCell.updateCellState(CellState.SHORTEST_PATH);
             }, delay);
