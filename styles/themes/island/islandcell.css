@@ -105,7 +105,7 @@
     10% {
         transform: scale(1.2);
         /* background-color: #264890; */
-        background-image: url("../../../images/rock.png");
+        background-image: url("../../../images/palmtree.png");
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -113,7 +113,7 @@
     25% {
         transform: scale(1);
         /* background-color: #264890; */
-        background-image: url("../../../images/rock.png");
+        background-image: url("../../../images/palmtree.png");
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -121,7 +121,7 @@
     100% {
         transform: scale(1);
         /* background-color: #264890; */
-        background-image: url("../../../images/rock.png");
+        background-image: url("../../../images/palmtree.png");
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
