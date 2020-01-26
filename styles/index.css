@@ -1,7 +1,5 @@
 @import url("utilitybar.css");
 @import url("headerbar.css");
-@import url("grid.css");
-@import url("cell.css");
 
 body, html {
     font-family: 'Open Sans', sans-serif;

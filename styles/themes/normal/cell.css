@@ -1,6 +1,6 @@
 .source-cell {
     transform: scale(1.0);
-    background-image: url("../images/source.png");
+    background-image: url("../../../images/source.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -9,7 +9,7 @@
 .source-cell-visited {
     background-color: yellow;
     transform: scale(1.0);
-    background-image: url("../images/source.png");
+    background-image: url("../../../images/source.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -17,7 +17,7 @@
 
 .destination-cell {
     transform: scale(1.0);
-    background-image: url("../images/destination.png");
+    background-image: url("../../../images/destination.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -26,7 +26,7 @@
 .destination-cell-visited {
     background-color: yellow;
     transform: scale(1.0);
-    background-image: url("../images/destination.png");
+    background-image: url("../../../images/destination.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;

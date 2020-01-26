@@ -1,3 +1,5 @@
+import NormalTheme from "../themebutton/normaltheme.js";
+
 export default class ThemeButtonGroup {
     constructor(grid) {
         this.dropdownActiveItem = "dropdown-active-item";
@@ -5,6 +7,7 @@ export default class ThemeButtonGroup {
         this.getThemeButtons();
         this.initButtonToThemeMap();
         this.initButtonFunctionality();
+        this.setDefaultTheme();
     }
 
     getThemeButtons() {
@@ -22,7 +25,7 @@ export default class ThemeButtonGroup {
 
     initButtonToThemeMap() {
         this.buttonToThemeMap = new Map([
-            // [this.normalTheme, new BasicRandomMaze(this.grid)],
+            [this.normalTheme, new NormalTheme()],
             // [this.galaxyTheme, new RecursiveDivision(this.grid)],
             // [this.islandTheme, new RecursiveDivision(this.grid)],
             // [this.arcadeTheme, new RecursiveDivision(this.grid)]
@@ -36,9 +39,9 @@ export default class ThemeButtonGroup {
                 this.resetActiveItems(this.themeChoices);
                 this.themeChoices[i].classList.add(this.dropdownActiveItem);
 
-                // Get the maze algorithm and run it
-                // let mazeAlgorithm = this.buttonToMazeMap.get(this.themeChoices[i]);
-                // mazeAlgorithm.run();
+                // Activate the theme
+                let theme = this.buttonToThemeMap.get(this.themeChoices[i]);
+                theme.activateTheme();
             });
         }
     }
@@ -47,5 +50,11 @@ export default class ThemeButtonGroup {
         for (let i = 0; i < themeChoices.length; i++) {
             themeChoices[i].classList.remove(this.dropdownActiveItem);
         }
+    }
+
+    setDefaultTheme() {
+        this.normalTheme.classList.add(this.dropdownActiveItem);
+        let theme = this.buttonToThemeMap.get(this.normalTheme);
+        theme.activateTheme();
     }
 }
