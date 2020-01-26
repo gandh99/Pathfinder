@@ -1,6 +1,6 @@
 .source-cell {
     transform: scale(1.0);
-    background-image: url("../../../images/source.png");
+    background-image: url("../../../images/rocket.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -21,7 +21,7 @@
     0% {
         transform: scale(0.6);
         background-color: rgb(255, 254, 106);
-        background-image: url("../../../images/source.png");
+        background-image: url("../../../images/rocket.png");
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -29,7 +29,7 @@
     50% {
         transform: scale(1.2);
         background-color: rgb(255, 254, 106);
-        background-image: url("../../../images/source.png");
+        background-image: url("../../../images/rocket.png");
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -37,7 +37,7 @@
     100% {
         transform: scale(1);
         background-color: rgb(255, 254, 106);
-        background-image: url("../../../images/source.png");
+        background-image: url("../../../images/rocket.png");
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -46,7 +46,7 @@
 
 .destination-cell {
     transform: scale(1.0);
-    background-image: url("../../../images/destination.png");
+    background-image: url("../../../images/earth.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -67,7 +67,7 @@
     0% {
         transform: scale(0.6);
         background-color: rgb(255, 254, 106);
-        background-image: url("../../../images/destination.png");
+        background-image: url("../../../images/earth.png");
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -75,7 +75,7 @@
     50% {
         transform: scale(1.2);
         background-color: rgb(255, 254, 106);
-        background-image: url("../../../images/destination.png");
+        background-image: url("../../../images/earth.png");
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -83,7 +83,7 @@
     100% {
         transform: scale(1);
         background-color: rgb(255, 254, 106);
-        background-image: url("../../../images/destination.png");
+        background-image: url("../../../images/earth.png");
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -104,15 +104,27 @@
 @keyframes obstacle {
     10% {
         transform: scale(1.2);
-        background-color: #264890;
+        /* background-color: #264890; */
+        background-image: url("../../../images/asteroid.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
     }
     25% {
         transform: scale(1);
-        background-color: #264890;
+        /* background-color: #264890; */
+        background-image: url("../../../images/asteroid.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
     }
     100% {
         transform: scale(1);
-        background-color: #264890;
+        /* background-color: #264890; */
+        background-image: url("../../../images/asteroid.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
     }
 }
 
