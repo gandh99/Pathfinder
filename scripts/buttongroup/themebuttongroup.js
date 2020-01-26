@@ -1,4 +1,5 @@
 import NormalTheme from "../themebutton/normaltheme.js";
+import IslandTheme from "../themebutton/islandtheme.js";
 
 export default class ThemeButtonGroup {
     constructor(grid) {
@@ -27,7 +28,7 @@ export default class ThemeButtonGroup {
         this.buttonToThemeMap = new Map([
             [this.normalTheme, new NormalTheme()],
             // [this.galaxyTheme, new RecursiveDivision(this.grid)],
-            // [this.islandTheme, new RecursiveDivision(this.grid)],
+            [this.islandTheme, new IslandTheme()],
             // [this.arcadeTheme, new RecursiveDivision(this.grid)]
         ]);
     }

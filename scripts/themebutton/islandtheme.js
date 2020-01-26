@@ -1,7 +1,7 @@
-export default class NormalTheme {
+export default class IslandTheme {
     constructor() {
-        this.cellStyle = "styles/themes/normal/normalcell.css";
-        this.gridStyle = "styles/themes/normal/normalgrid.css";
+        this.cellStyle = "styles/themes/normal/islandcell.css";
+        this.gridStyle = "styles/themes/normal/islandgrid.css";
     }
 
     activateTheme() {
