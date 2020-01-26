@@ -17,8 +17,29 @@
 }
 
 .obstacle-cell {
-    background-color: #2f4152;
-    transform: scale(1.0);
+    animation-name: obstacle;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-out;
+    animation-delay: 0;
+    animation-direction: alternate;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+
+@keyframes obstacle {
+    10% {
+        transform: scale(1.2);
+        background-color: #2f4152;
+    }
+    25% {
+        transform: scale(1);
+        background-color: #2f4152;
+    }
+    100% {
+        transform: scale(1);
+        background-color: #2f4152;
+    }
 }
 
 .visited-cell {
