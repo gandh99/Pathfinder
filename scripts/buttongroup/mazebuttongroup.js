@@ -5,7 +5,6 @@ export default class MazeButtonGroup {
     constructor(grid) {
         this.dropdownActiveItem = "dropdown-active-item";
         this.grid = grid;
-        this.selectedAlgorithm;
         this.getMazeButtons();
         this.initButtonToMazeMap();
         this.initButtonFunctionality();
