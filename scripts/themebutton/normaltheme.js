@@ -1,22 +1,9 @@
-export default class NormalTheme {
+import ThemeModifier from "../button/thememodifier.js"
+
+export default class NormalTheme extends ThemeModifier {
     constructor() {
-        this.cellStyle = "styles/themes/normal/normalcell.css";
-        this.gridStyle = "styles/themes/normal/normalgrid.css";
-    }
-
-    activateTheme() {
-        this.appendThemeToHead(this.cellStyle);
-        this.appendThemeToHead(this.gridStyle);
-    }
-
-    appendThemeToHead(filename) {
-        let fileref = document.createElement("link");
-        fileref.setAttribute("rel", "stylesheet");
-        fileref.setAttribute("type", "text/css");
-        fileref.setAttribute("href", filename);
-        fileref.setAttribute("media", "all");
-
-        let head  = document.getElementsByTagName('head')[0];
-        head.appendChild(fileref);
+        let cellStyle = "styles/themes/normal/normalcell.css";
+        let gridStyle = "styles/themes/normal/normalgrid.css";
+        super(cellStyle, gridStyle);
     }
 }

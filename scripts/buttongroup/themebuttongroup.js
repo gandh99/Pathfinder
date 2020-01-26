@@ -5,6 +5,7 @@ export default class ThemeButtonGroup {
     constructor(grid) {
         this.dropdownActiveItem = "dropdown-active-item";
         this.grid = grid;
+        this.activeTheme;
         this.getThemeButtons();
         this.initButtonToThemeMap();
         this.initButtonFunctionality();
@@ -40,9 +41,11 @@ export default class ThemeButtonGroup {
                 this.resetActiveItems(this.themeChoices);
                 this.themeChoices[i].classList.add(this.dropdownActiveItem);
 
-                // Activate the theme
+                // Remove any other theme and then activate this theme
+                this.activeTheme.removeThemeFromHead();
                 let theme = this.buttonToThemeMap.get(this.themeChoices[i]);
                 theme.activateTheme();
+                this.activeTheme = theme;
             });
         }
     }
@@ -57,5 +60,6 @@ export default class ThemeButtonGroup {
         this.normalTheme.classList.add(this.dropdownActiveItem);
         let theme = this.buttonToThemeMap.get(this.normalTheme);
         theme.activateTheme();
+        this.activeTheme = theme;
     }
 }
