@@ -1,5 +1,6 @@
 @import url("headerbar.css");
 @import url("utilitybar.css");
+@import url("helpwindow.css");
 
 body, html {
     font-family: 'Open Sans', sans-serif;

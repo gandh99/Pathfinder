@@ -3,6 +3,7 @@ import AlgorithmButtonGroup from "./buttongroup/algorithmbuttongroup.js";
 import ResetButton from "./button/resetbutton.js";
 import MazeButtonGroup from "./buttongroup/mazebuttongroup.js";
 import ThemeButtonGroup from "./buttongroup/themebuttongroup.js";
+import HelpButton from "./button/helpbutton.js";
 
 export default class HeaderBar {
     constructor(grid, utilityBar) {
@@ -11,5 +12,6 @@ export default class HeaderBar {
         this.animationButtonGroup = new AnimationButtonGroup(grid, utilityBar, this.algorithmButtonGroup);
         this.mazeButtonGroup = new MazeButtonGroup(grid);
         this.resetButton = new ResetButton(grid);
+        this.helpButton = new HelpButton();
     }
 }
